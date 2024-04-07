@@ -53,6 +53,9 @@ public class RegistrationService : IRegistrationService
         if (registration is null)
             return new() { Success = false, Message = "Registration does not exist!" };
 
+        if (!registration.AuthCode.Equals(request.AuthCode))
+            return new() { Success = false, Message = "Authentication code is incorrect!" };
+
         throw new NotImplementedException();
     }
 }
