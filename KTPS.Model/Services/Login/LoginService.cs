@@ -56,6 +56,9 @@ public class LoginService : ILoginService
             if (user == null)
                 return new() { Success = false, Message = "User with this email does not exist!" };
 
+            var recoveryCode = RandomString.GenerateRandomString();
+            await _passwordResetRepository.InsertCodeAsync(user.ID, recoveryCode);
+
             return new() { Success = true, Data = user.ID };
         }
         catch
