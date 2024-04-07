@@ -27,5 +27,19 @@ public class LoginService : ILoginService
 
     public async Task<ServerResult<int>> ForgotPasswordAsync(ForgotPasswordRequest request) => throw new NotImplementedException();
 
-    public async Task<ServerResult<int>> LoginAsync(LoginRequest request) => throw new NotImplementedException();
+    public async Task<ServerResult<int>> LoginAsync(LoginRequest request)
+    {
+        try
+        {
+            var user = await _userService.GetUserByUsernameAsync(request.Username);
+            if (user is null)
+                return new() { Success = false, Message = "User does not exist!" };
+
+            return new() { Success = true, Data = user.ID };
+        }
+        catch
+        {
+            return new() { Success = false, Message = "Technical error!" };
+        }
+    }
 }

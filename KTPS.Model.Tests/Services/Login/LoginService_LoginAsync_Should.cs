@@ -12,8 +12,8 @@ public class LoginService_LoginAsync_Should
     [Fact]
     public async void ReturnErrorIfUserDoesNotExist()
     {
-        var userService = new Mock<UserService>();
-        var passwordResetRepository = new Mock<PasswordResetRepository>();
+        var userService = new Mock<IUserService>();
+        var passwordResetRepository = new Mock<IPasswordResetRepository>();
 
         var loginService = new LoginService(userService.Object, passwordResetRepository.Object);
         userService.Setup(_ => _.GetUserByUsernameAsync("test_user")).ReturnsAsync(null as UserBasic);

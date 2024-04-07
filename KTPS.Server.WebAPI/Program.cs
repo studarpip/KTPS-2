@@ -7,6 +7,7 @@ using KTPS.Model.Repositories.Notifications;
 using KTPS.Model.Repositories.PasswordReset;
 using KTPS.Model.Repositories.Registration;
 using KTPS.Model.Repositories.User;
+using KTPS.Model.Services.Login;
 using KTPS.Model.Services.User;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.DependencyInjection;
@@ -62,5 +63,6 @@ public class Program
         services.AddSingleton<IGuestsRepository, GuestsRepository>();
         services.AddSingleton<INotificationRepository, NotificationRepository>();
         services.AddSingleton<IFriendsRepository, FriendsRepository>();
+        services.AddSingleton<ILoginService, LoginService>();
     }
 }
