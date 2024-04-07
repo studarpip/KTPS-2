@@ -1,5 +1,6 @@
 ﻿using KTPS.Model.Entities;
 using KTPS.Model.Entities.Requests;
+using KTPS.Model.Helpers;
 using KTPS.Model.Repositories.PasswordReset;
 using KTPS.Model.Services.User;
 using System;
@@ -34,6 +35,10 @@ public class LoginService : ILoginService
             var user = await _userService.GetUserByUsernameAsync(request.Username);
             if (user is null)
                 return new() { Success = false, Message = "User does not exist!" };
+
+            var hashedPassword = request.Password.Hash();
+            if (!user.Password.Equals(hashedPassword))
+                return new() { Success = false, Message = "Wrong password!" };
 
             return new() { Success = true, Data = user.ID };
         }
