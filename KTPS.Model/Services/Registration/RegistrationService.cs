@@ -23,6 +23,10 @@ public class RegistrationService : IRegistrationService
         if (usernameExists)
             return new() { Success = false, Message = "Username already exists!" };
 
+        var emailExists = await _userService.EmailExistsAsync(request.Email);
+        if (emailExists)
+            return new() { Success = false, Message = "Email already exists!" };
+
         throw new NotImplementedException();
     }
 
