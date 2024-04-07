@@ -53,5 +53,32 @@ public class RegistrationService_AuthRegistration_Should
         result.Should().BeEquivalentTo(expected);
     }
 
+    [Fact]
+    public async void CreateUserAndUpdateRegistration()
+    {
+        var someId = 1;
+        var someAuthCode = "someAuthCode";
+        var someUserId = 3;
+
+
+        var registrationRepo = new Mock<IRegistrationRepository>();
+        var someRegistrationBasic = new RegistrationBasic() { ID = someId, AuthCode = someAuthCode };
+        registrationRepo.Setup(_ => _.GetByID(someId)).ReturnsAsync(someRegistrationBasic);
+
+        var userService = new Mock<IUserService>();
+        userService.Setup(_ => _.CreateUserAsync(It.IsAny<RegistrationBasic>())).ReturnsAsync(someUserId);
+
+        var registrationService = new RegistrationService(userService.Object, registrationRepo.Object);
+
+        var request = new RegistrationAuthRequest() { RegistrationID = someId, AuthCode = someAuthCode };
+        var expected = new ServerResult<int>() { Success = true, Data = someUserId };
+
+        var result = await registrationService.AuthRegistrationAsync(request);
+
+        result.Should().BeEquivalentTo(expected);
+
+        registrationRepo.Verify(_ => _.AddUserToRegistration(someRegistrationBasic.ID, someUserId));
+    }
+
 
 }
