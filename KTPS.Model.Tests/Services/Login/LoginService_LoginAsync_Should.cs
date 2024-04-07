@@ -43,7 +43,7 @@ public class LoginService_LoginAsync_Should
     }
 
     [Fact]
-    public async void ReturnSuccessfulResssssult()
+    public async void ReturnSuccessfulResult()
     {
         var userService = new Mock<IUserService>();
         var passwordResetRepository = new Mock<IPasswordResetRepository>();
