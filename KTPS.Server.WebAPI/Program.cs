@@ -7,6 +7,7 @@ using KTPS.Model.Repositories.Notifications;
 using KTPS.Model.Repositories.PasswordReset;
 using KTPS.Model.Repositories.Registration;
 using KTPS.Model.Repositories.User;
+using KTPS.Model.Services.Friends;
 using KTPS.Model.Services.Registration;
 using KTPS.Model.Services.User;
 using Microsoft.AspNetCore.Builder;
@@ -57,6 +58,7 @@ public class Program
         services.AddSingleton<IRegistrationRepository, RegistrationRepository>();
         services.AddSingleton<IUserRepository, UserRepository>();
         services.AddSingleton<IRegistrationService, RegistrationService>();
+        services.AddSingleton<IFriendsService, FriendsService>();
         services.AddSingleton<IUserService, UserService>();
         services.AddSingleton<IPasswordResetRepository, PasswordResetRepository>();
         services.AddSingleton<IGroupsRepository, GroupsRepository>();
