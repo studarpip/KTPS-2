@@ -4,6 +4,7 @@ using KTPS.Model.Entities.User;
 using KTPS.Model.Repositories.Friends;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace KTPS.Model.Services.Friends
@@ -45,9 +46,18 @@ namespace KTPS.Model.Services.Friends
             }
         }
 
-        public Task<ServerResult<IEnumerable<UserMinimal>>> FindFriendAsync(FindFriendRequest request)
+        public async Task<ServerResult<IEnumerable<UserMinimal>>> FindFriendAsync(FindFriendRequest request)
         {
-            throw new System.NotImplementedException();
+            try
+            {
+                var availableFriends = await _friendsRepository.FindFriendAsync(request.Input);
+                var filteredFriends = availableFriends.Where(x => x.ID != request.UserID);
+                return new() { Success = true, Data = filteredFriends };
+            }
+            catch (Exception)
+            {
+                return new() { Success = false, Message = "Technical error!" };
+            }
         }
 
         public Task AddFriendAsync(int userId, int friendId)
