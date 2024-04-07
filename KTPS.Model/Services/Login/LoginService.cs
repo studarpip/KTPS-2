@@ -46,7 +46,21 @@ public class LoginService : ILoginService
         }
     }
 
-    public async Task<ServerResult> ResetPasswordAuthAsync(ResetPasswordAuthRequest request) => throw new NotImplementedException();
+    public async Task<ServerResult> ResetPasswordAuthAsync(ResetPasswordAuthRequest request)
+    {
+        try
+        {
+            var code = await _passwordResetRepository.GetCodeAsync(request.UserID);
+            if (!code.Equals(request.RecoveryCode))
+                return new() { Success = false, Message = "Recovery code incorrect!" };
+
+            return new() { Success = true };
+        }
+        catch
+        {
+            return new() { Success = false, Message = "Technical error!" };
+        }
+    }
 
     public async Task<ServerResult<int>> ForgotPasswordAsync(ForgotPasswordRequest request)
     {
