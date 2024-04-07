@@ -22,7 +22,21 @@ public class LoginService : ILoginService
         _passwordResetRepository = passwordResetRepository;
     }
 
-    public async Task<ServerResult> ResetPasswordAsync(ResetPasswordRequest request) => throw new NotImplementedException();
+    public async Task<ServerResult> ResetPasswordAsync(ResetPasswordRequest request)
+    {
+        try
+        {
+            var user = await _userService.GetUserByIdAsync(request.UserID);
+            if (user == null)
+                return new() { Success = false, Message = "User not found!" };
+
+            return new() { Success = true };
+        }
+        catch
+        {
+            return new() { Success = false, Message = "Technical error!" };
+        }
+    }
 
     public async Task<ServerResult> ResetPasswordAuthAsync(ResetPasswordAuthRequest request) => throw new NotImplementedException();
 
