@@ -1,6 +1,7 @@
 ﻿using KTPS.Model.Entities;
 using KTPS.Model.Entities.Requests;
 using KTPS.Model.Entities.User;
+using KTPS.Model.Helpers;
 using KTPS.Model.Repositories.PasswordReset;
 using KTPS.Model.Services.Login;
 using KTPS.Model.Services.User;
@@ -38,6 +39,22 @@ public class LoginService_LoginAsync_Should
         var res = await loginService.LoginAsync(loginRequest);
 
         var exceptedRes = new ServerResult<int>() { Success = false, Message = "Wrong password!" };
+        res.Should().BeEquivalentTo(exceptedRes);
+    }
+
+    [Fact]
+    public async void ReturnSuccessfulResssssult()
+    {
+        var userService = new Mock<IUserService>();
+        var passwordResetRepository = new Mock<IPasswordResetRepository>();
+
+        var loginService = new LoginService(userService.Object, passwordResetRepository.Object);
+        userService.Setup(_ => _.GetUserByUsernameAsync("test_user")).ReturnsAsync(new UserBasic { ID = 5, Password = "test_password".Hash() });
+
+        var loginRequest = new LoginRequest() { Username = "test_user", Password = "test_password" };
+        var res = await loginService.LoginAsync(loginRequest);
+
+        var exceptedRes = new ServerResult<int>() { Success = true, Data = 5 };
         res.Should().BeEquivalentTo(exceptedRes);
     }
 }
