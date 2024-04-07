@@ -18,10 +18,10 @@ public class RegistrationService_AuthRegistration_Should
 
         var userService = new Mock<IUserService>();
 
-        var registrationRepo = new Mock<IRegistrationRepository>();
-        registrationRepo.Setup(_ => _.GetByID(someId)).ReturnsAsync(null as RegistrationBasic);
+        var registrationRepository = new Mock<IRegistrationRepository>();
+        registrationRepository.Setup(_ => _.GetByID(someId)).ReturnsAsync(null as RegistrationBasic);
 
-        var registrationService = new RegistrationService(userService.Object, registrationRepo.Object);
+        var registrationService = new RegistrationService(userService.Object, registrationRepository.Object);
 
         var request = new RegistrationAuthRequest() { RegistrationID = someId, AuthCode = "not important" };
         var expected = new ServerResult<int>() { Success = false, Message = "Registration does not exist!" };
@@ -39,11 +39,11 @@ public class RegistrationService_AuthRegistration_Should
 
         var userService = new Mock<IUserService>();
 
-        var registrationRepo = new Mock<IRegistrationRepository>();
+        var registrationRepository = new Mock<IRegistrationRepository>();
         var someRegistrationBasic = new RegistrationBasic() { ID = someId, AuthCode = someAuthCode };
-        registrationRepo.Setup(_ => _.GetByID(someId)).ReturnsAsync(someRegistrationBasic);
+        registrationRepository.Setup(_ => _.GetByID(someId)).ReturnsAsync(someRegistrationBasic);
 
-        var registrationService = new RegistrationService(userService.Object, registrationRepo.Object);
+        var registrationService = new RegistrationService(userService.Object, registrationRepository.Object);
 
         var request = new RegistrationAuthRequest() { RegistrationID = someId, AuthCode = "mismatchingCode" };
         var expected = new ServerResult<int>() { Success = false, Message = "Authentication code is incorrect!" };
@@ -61,14 +61,14 @@ public class RegistrationService_AuthRegistration_Should
         var someUserId = 3;
 
 
-        var registrationRepo = new Mock<IRegistrationRepository>();
+        var registrationRepository = new Mock<IRegistrationRepository>();
         var someRegistrationBasic = new RegistrationBasic() { ID = someId, AuthCode = someAuthCode };
-        registrationRepo.Setup(_ => _.GetByID(someId)).ReturnsAsync(someRegistrationBasic);
+        registrationRepository.Setup(_ => _.GetByID(someId)).ReturnsAsync(someRegistrationBasic);
 
         var userService = new Mock<IUserService>();
         userService.Setup(_ => _.CreateUserAsync(It.IsAny<RegistrationBasic>())).ReturnsAsync(someUserId);
 
-        var registrationService = new RegistrationService(userService.Object, registrationRepo.Object);
+        var registrationService = new RegistrationService(userService.Object, registrationRepository.Object);
 
         var request = new RegistrationAuthRequest() { RegistrationID = someId, AuthCode = someAuthCode };
         var expected = new ServerResult<int>() { Success = true, Data = someUserId };
@@ -77,7 +77,7 @@ public class RegistrationService_AuthRegistration_Should
 
         result.Should().BeEquivalentTo(expected);
 
-        registrationRepo.Verify(_ => _.AddUserToRegistration(someRegistrationBasic.ID, someUserId));
+        registrationRepository.Verify(_ => _.AddUserToRegistration(someRegistrationBasic.ID, someUserId));
     }
 
 

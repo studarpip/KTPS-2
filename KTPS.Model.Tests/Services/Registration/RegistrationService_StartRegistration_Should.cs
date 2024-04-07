@@ -21,9 +21,9 @@ public class RegistrationService_StartRegistration_Should
         var userService = new Mock<IUserService>();
         userService.Setup(_ => _.UsernameExistsAsync(someUsername)).ReturnsAsync(true);
 
-        var registrationRepo = new Mock<IRegistrationRepository>();
+        var registrationRepository = new Mock<IRegistrationRepository>();
 
-        var registrationService = new RegistrationService(userService.Object, registrationRepo.Object);
+        var registrationService = new RegistrationService(userService.Object, registrationRepository.Object);
 
         var request = new RegistrationStartRequest() { Username = someUsername, Email = someEmail, Password = somePassword };
         var expected = new ServerResult<int>() { Success = false, Message = "Username already exists!" };
@@ -43,9 +43,9 @@ public class RegistrationService_StartRegistration_Should
         var userService = new Mock<IUserService>();
         userService.Setup(_ => _.EmailExistsAsync(someEmail)).ReturnsAsync(true);
 
-        var registrationRepo = new Mock<IRegistrationRepository>();
+        var registrationRepository = new Mock<IRegistrationRepository>();
 
-        var registrationService = new RegistrationService(userService.Object, registrationRepo.Object);
+        var registrationService = new RegistrationService(userService.Object, registrationRepository.Object);
 
         var request = new RegistrationStartRequest() { Username = someUsername, Email = someEmail, Password = somePassword };
         var expected = new ServerResult<int>() { Success = false, Message = "Email already exists!" };
@@ -67,7 +67,7 @@ public class RegistrationService_StartRegistration_Should
         userService.Setup(_ => _.EmailExistsAsync(someEmail)).ReturnsAsync(false);
         userService.Setup(_ => _.UsernameExistsAsync(someUsername)).ReturnsAsync(false);
 
-        var registrationRepo = new Mock<IRegistrationRepository>();
+        var registrationRepository = new Mock<IRegistrationRepository>();
         var expectedRegistrationBasic = new RegistrationBasic()
         {
             UserID = null,
@@ -75,9 +75,9 @@ public class RegistrationService_StartRegistration_Should
             Email = someEmail,
             Password = somePassword.Hash()
         };
-        registrationRepo.Setup(_ => _.InsertAsync(It.IsAny<RegistrationBasic>())).ReturnsAsync(someRegistrationId);
+        registrationRepository.Setup(_ => _.InsertAsync(It.IsAny<RegistrationBasic>())).ReturnsAsync(someRegistrationId);
 
-        var registrationService = new RegistrationService(userService.Object, registrationRepo.Object);
+        var registrationService = new RegistrationService(userService.Object, registrationRepository.Object);
 
         var request = new RegistrationStartRequest() { Username = someUsername, Email = someEmail, Password = somePassword };
         var expected = new ServerResult<int>() { Success = true, Data = someRegistrationId };
@@ -85,7 +85,7 @@ public class RegistrationService_StartRegistration_Should
         var result = await registrationService.StartRegistrationAsync(request);
 
         result.Should().BeEquivalentTo(expected);
-        registrationRepo.Verify(_ => _.InsertAsync(It.Is<RegistrationBasic>(r =>
+        registrationRepository.Verify(_ => _.InsertAsync(It.Is<RegistrationBasic>(r =>
             r.UserID == expectedRegistrationBasic.UserID
             && r.Username == expectedRegistrationBasic.Username
             && r.Email == expectedRegistrationBasic.Email
