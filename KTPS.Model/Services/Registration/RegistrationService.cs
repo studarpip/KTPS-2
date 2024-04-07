@@ -49,6 +49,10 @@ public class RegistrationService : IRegistrationService
 
     public async Task<ServerResult<int>> AuthRegistrationAsync(RegistrationAuthRequest request)
     {
+        var registration = await _registrationRepository.GetByID(request.RegistrationID);
+        if (registration is null)
+            return new() { Success = false, Message = "Registration does not exist!" };
+
         throw new NotImplementedException();
     }
 }
