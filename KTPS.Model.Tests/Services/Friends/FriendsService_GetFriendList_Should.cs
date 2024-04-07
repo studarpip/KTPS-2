@@ -24,7 +24,7 @@ namespace KTPS.Model.Tests.Services.Friends
 
             friendsRepository.Setup(_ => _.GetFriendListAsync(someUserId)).ReturnsAsync(friendsList);
 
-            var friendsService = new FriendsService();
+            var friendsService = new FriendsService(friendsRepository.Object);
 
             var result = await friendsService.GetFriendListAsync(someUserId);
 
