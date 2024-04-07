@@ -48,7 +48,21 @@ public class LoginService : ILoginService
 
     public async Task<ServerResult> ResetPasswordAuthAsync(ResetPasswordAuthRequest request) => throw new NotImplementedException();
 
-    public async Task<ServerResult<int>> ForgotPasswordAsync(ForgotPasswordRequest request) => throw new NotImplementedException();
+    public async Task<ServerResult<int>> ForgotPasswordAsync(ForgotPasswordRequest request)
+    {
+        try
+        {
+            var user = await _userService.GetUserByEmailAsync(request.Email);
+            if (user == null)
+                return new() { Success = false, Message = "User with this email does not exist!" };
+
+            return new() { Success = true, Data = user.ID };
+        }
+        catch
+        {
+            return new() { Success = false, Message = "Technical error!" };
+        }
+    }
 
     public async Task<ServerResult<int>> LoginAsync(LoginRequest request)
     {
