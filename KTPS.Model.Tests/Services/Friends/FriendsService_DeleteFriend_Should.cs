@@ -32,6 +32,7 @@ namespace KTPS.Model.Tests.Services.Friends
             result.Should().BeEquivalentTo(expectedResult);
 
             friendsRepository.Verify(_ => _.DeleteFriendAsync(someUserId, someFriendId), Times.Once);
+            friendsRepository.Verify(_ => _.DeleteFriendAsync(someFriendId, someUserId), Times.Once);
         }
     }
 }
