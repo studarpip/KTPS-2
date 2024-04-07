@@ -34,6 +34,10 @@ public class LoginService : ILoginService
             if (!code.Equals(request.AuthCheck))
                 return new() { Success = false, Message = "Technical error!" };
 
+            var newPasswordHashed = request.NewPassword.Hash();
+            user.Password = newPasswordHashed;
+
+            await _userService.UpdateUserAsync(user);
             return new() { Success = true };
         }
         catch
