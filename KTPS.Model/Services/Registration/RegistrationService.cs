@@ -56,6 +56,10 @@ public class RegistrationService : IRegistrationService
         if (!registration.AuthCode.Equals(request.AuthCode))
             return new() { Success = false, Message = "Authentication code is incorrect!" };
 
-        throw new NotImplementedException();
+        int userId = await _userService.CreateUserAsync(registration);
+
+        await _registrationRepository.AddUserToRegistration(registration.ID, userId);
+
+        return new() { Success = true, Data = userId };
     }
 }
