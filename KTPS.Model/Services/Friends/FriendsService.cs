@@ -31,9 +31,18 @@ namespace KTPS.Model.Services.Friends
             }
         }
 
-        public Task<ServerResult> DeleteFriendAsync(DeleteFriendRequest request)
+        public async Task<ServerResult> DeleteFriendAsync(DeleteFriendRequest request)
         {
-            throw new System.NotImplementedException();
+            try
+            {
+                await _friendsRepository.DeleteFriendAsync(request.UserID, request.FriendID);
+                await _friendsRepository.DeleteFriendAsync(request.FriendID, request.UserID);
+                return new() { Success = true };
+            }
+            catch (Exception)
+            {
+                return new() { Success = false, Message = "Technical error!" };
+            }
         }
 
         public Task<ServerResult<IEnumerable<UserMinimal>>> FindFriendAsync(FindFriendRequest request)
