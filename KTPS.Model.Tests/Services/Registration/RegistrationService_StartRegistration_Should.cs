@@ -11,16 +11,41 @@ public class RegistrationService_StartRegistration_Should
     [Fact]
     public async void ReturnErrorIfUserExists()
     {
+        var someUsername = "someUsername";
+        var someEmail = "someEmail";
+        var somePassword = "somePassword";
+
         var userService = new Mock<IUserService>();
-        userService.Setup(_ => _.UsernameExistsAsync("someUsername")).ReturnsAsync(true);
+        userService.Setup(_ => _.UsernameExistsAsync(someUsername)).ReturnsAsync(true);
 
         var registrationService = new RegistrationService(userService.Object);
 
-        var request = new RegistrationStartRequest() { Username = "someUsername", Email = "someEmail", Password = "somePassword" };
+        var request = new RegistrationStartRequest() { Username = someUsername, Email = someEmail, Password = somePassword };
         var expected = new ServerResult<int>() { Success = false, Message = "Username already exists!" };
 
         var result = await registrationService.StartRegistrationAsync(request);
 
         Assert.Equivalent(expected, result);
     }
+
+    [Fact]
+    public async void ReturnErrorIfEmailExists()
+    {
+        var someUsername = "someUsername";
+        var someEmail = "someEmail";
+        var somePassword = "somePassword";
+
+        var userService = new Mock<IUserService>();
+        userService.Setup(_ => _.EmailExistsAsync(someEmail)).ReturnsAsync(true);
+
+        var registrationService = new RegistrationService(userService.Object);
+
+        var request = new RegistrationStartRequest() { Username = someUsername, Email = someEmail, Password = somePassword };
+        var expected = new ServerResult<int>() { Success = false, Message = "Email already exists!" };
+
+        var result = await registrationService.StartRegistrationAsync(request);
+
+        Assert.Equivalent(expected, result);
+    }
+
 }
