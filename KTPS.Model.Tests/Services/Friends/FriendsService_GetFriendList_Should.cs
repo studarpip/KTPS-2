@@ -12,7 +12,7 @@ namespace KTPS.Model.Tests.Services.Friends
         [Fact]
         public async void CallFriendRepositoryAndReturnFriends()
         {
-            var someUserId = 1;
+            var someUserId = 1;//Setting up variables
 
             var friendsRepository = new Mock<IFriendsRepository>();
 
@@ -22,15 +22,15 @@ namespace KTPS.Model.Tests.Services.Friends
                 new UserMinimal() {ID = 2, Username = "name2"}
             };
 
-            friendsRepository.Setup(_ => _.GetFriendListAsync(someUserId)).ReturnsAsync(friendsList);
+            friendsRepository.Setup(_ => _.GetFriendListAsync(someUserId)).ReturnsAsync(friendsList);//Mocking repository to return friend list we set up
 
             var friendsService = new FriendsService(friendsRepository.Object);
 
-            var result = await friendsService.GetFriendListAsync(someUserId);
+            var result = await friendsService.GetFriendListAsync(someUserId);//Calling service
 
-            var expectedResult = new ServerResult<IEnumerable<UserMinimal>>() { Success = true, Data = friendsList };
+            var expectedResult = new ServerResult<IEnumerable<UserMinimal>>() { Success = true, Data = friendsList };//Setting up expected result
 
-            result.Should().BeEquivalentTo(expectedResult);
+            result.Should().BeEquivalentTo(expectedResult);//Checking if result is equal to expected result
         }
     }
 }
