@@ -24,4 +24,20 @@ public class LoginService_LoginAsync_Should
         var exceptedRes = new ServerResult<int>() { Success = false, Message = "User does not exist!" };
         res.Should().BeEquivalentTo(exceptedRes);
     }
+
+    [Fact]
+    public async void ReturnErrorIfPasswordDoesNotMatch()
+    {
+        var userService = new Mock<IUserService>();
+        var passwordResetRepository = new Mock<IPasswordResetRepository>();
+
+        var loginService = new LoginService(userService.Object, passwordResetRepository.Object);
+        userService.Setup(_ => _.GetUserByUsernameAsync("test_user")).ReturnsAsync(new UserBasic { ID = 5, Password = "test_password" });
+
+        var loginRequest = new LoginRequest() { Username = "test_user", Password = "wrong_password" };
+        var res = await loginService.LoginAsync(loginRequest);
+
+        var exceptedRes = new ServerResult<int>() { Success = false, Message = "Wrong password!" };
+        res.Should().BeEquivalentTo(exceptedRes);
+    }
 }
