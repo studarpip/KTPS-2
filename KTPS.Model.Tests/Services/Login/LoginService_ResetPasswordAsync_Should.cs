@@ -24,4 +24,21 @@ public class LoginService_ResetPasswordAsync_Should
         var exceptedRes = new ServerResult() { Success = false, Message = "User not found!" };
         res.Should().BeEquivalentTo(exceptedRes);
     }
+
+    [Fact]
+    public async void ReturnErrorIfAuthCodeDoesNotMatch()
+    {
+        var userService = new Mock<IUserService>();
+        var passwordResetRepository = new Mock<IPasswordResetRepository>();
+
+        var loginService = new LoginService(userService.Object, passwordResetRepository.Object);
+        userService.Setup(_ => _.GetUserByIdAsync(5)).ReturnsAsync(new UserBasic());
+        passwordResetRepository.Setup(_ => _.GetCodeAsync(5)).ReturnsAsync("abcdef");
+
+        var resetPaswordRequest = new ResetPasswordRequest() { UserID = 5, AuthCheck = "wrong_code" };
+        var res = await loginService.ResetPasswordAsync(resetPaswordRequest);
+
+        var exceptedRes = new ServerResult() { Success = false, Message = "Technical error!" };
+        res.Should().BeEquivalentTo(exceptedRes);
+    }
 }
