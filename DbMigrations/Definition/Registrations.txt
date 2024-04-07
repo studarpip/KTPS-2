@@ -1,0 +1,8 @@
+CREATE TABLE registrations (
+    ID INT AUTO_INCREMENT PRIMARY KEY,
+    UserID INT,
+    Username VARCHAR(255) NOT NULL,
+    Password VARCHAR(255) NOT NULL,
+    Email VARCHAR(255) NOT NULL,
+    AuthCode VARCHAR(255) NOT NULL
+);

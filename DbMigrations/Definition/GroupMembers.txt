@@ -1,0 +1,6 @@
+CREATE TABLE group_members (
+    ID INT AUTO_INCREMENT PRIMARY KEY,
+    GroupID INT NOT NULL,
+    UserID INT NOT NULL,
+    CONSTRAINT uc_user_group UNIQUE (UserId, GroupId)
+);
