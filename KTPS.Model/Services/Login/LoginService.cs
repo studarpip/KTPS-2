@@ -30,6 +30,10 @@ public class LoginService : ILoginService
             if (user == null)
                 return new() { Success = false, Message = "User not found!" };
 
+            var code = await _passwordResetRepository.GetCodeAsync(request.UserID);
+            if (!code.Equals(request.AuthCheck))
+                return new() { Success = false, Message = "Technical error!" };
+
             return new() { Success = true };
         }
         catch
