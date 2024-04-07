@@ -21,14 +21,16 @@ public class RegistrationService_StartRegistration_Should
         var userService = new Mock<IUserService>();
         userService.Setup(_ => _.UsernameExistsAsync(someUsername)).ReturnsAsync(true);
 
-        var registrationService = new RegistrationService(userService.Object);
+        var registrationRepo = new Mock<IRegistrationRepository>();
+
+        var registrationService = new RegistrationService(userService.Object, registrationRepo.Object);
 
         var request = new RegistrationStartRequest() { Username = someUsername, Email = someEmail, Password = somePassword };
         var expected = new ServerResult<int>() { Success = false, Message = "Username already exists!" };
 
         var result = await registrationService.StartRegistrationAsync(request);
 
-        Assert.Equivalent(expected, result);
+        result.Should().BeEquivalentTo(expected);
     }
 
     [Fact]
@@ -41,14 +43,16 @@ public class RegistrationService_StartRegistration_Should
         var userService = new Mock<IUserService>();
         userService.Setup(_ => _.EmailExistsAsync(someEmail)).ReturnsAsync(true);
 
-        var registrationService = new RegistrationService(userService.Object);
+        var registrationRepo = new Mock<IRegistrationRepository>();
+
+        var registrationService = new RegistrationService(userService.Object, registrationRepo.Object);
 
         var request = new RegistrationStartRequest() { Username = someUsername, Email = someEmail, Password = somePassword };
         var expected = new ServerResult<int>() { Success = false, Message = "Email already exists!" };
 
         var result = await registrationService.StartRegistrationAsync(request);
 
-        Assert.Equivalent(expected, result);
+        result.Should().BeEquivalentTo(expected);
     }
 
     [Fact]
@@ -69,19 +73,24 @@ public class RegistrationService_StartRegistration_Should
             UserID = null,
             Username = someUsername,
             Email = someEmail,
-            Password = somePassword.Hash(),
-            AuthCode = "asdfsadf"
+            Password = somePassword.Hash()
         };
-        registrationRepo.Setup(_ => _.InsertAsync(expectedRegistrationBasic)).ReturnsAsync(someRegistrationId);
+        registrationRepo.Setup(_ => _.InsertAsync(It.IsAny<RegistrationBasic>())).ReturnsAsync(someRegistrationId);
 
-        var registrationService = new RegistrationService(userService.Object);
+        var registrationService = new RegistrationService(userService.Object, registrationRepo.Object);
 
         var request = new RegistrationStartRequest() { Username = someUsername, Email = someEmail, Password = somePassword };
         var expected = new ServerResult<int>() { Success = true, Data = someRegistrationId };
 
         var result = await registrationService.StartRegistrationAsync(request);
 
-        Assert.Equivalent(expected, result);
+        result.Should().BeEquivalentTo(expected);
+        registrationRepo.Verify(_ => _.InsertAsync(It.Is<RegistrationBasic>(r =>
+            r.UserID == expectedRegistrationBasic.UserID
+            && r.Username == expectedRegistrationBasic.Username
+            && r.Email == expectedRegistrationBasic.Email
+            && r.Password == expectedRegistrationBasic.Password
+        )));
     }
 
 }
