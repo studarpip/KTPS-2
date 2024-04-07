@@ -60,9 +60,10 @@ namespace KTPS.Model.Services.Friends
             }
         }
 
-        public Task AddFriendAsync(int userId, int friendId)
+        public async Task AddFriendAsync(int userId, int friendId)
         {
-            throw new NotImplementedException();
+            await _friendsRepository.InsertAsync(userId, friendId);
+            await _friendsRepository.InsertAsync(friendId, userId);
         }
     }
 }
