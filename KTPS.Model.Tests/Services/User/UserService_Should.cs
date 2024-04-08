@@ -5,6 +5,7 @@ using KTPS.Model.Repositories.PasswordReset;
 using KTPS.Model.Repositories.User;
 using KTPS.Model.Services.Login;
 using KTPS.Model.Services.User;
+using KTPS.Model.Entities.Registration;
 
 namespace KTPS.Model.Tests.Services.User
 {
@@ -128,6 +129,26 @@ namespace KTPS.Model.Tests.Services.User
             var res = await userService.GetUserByEmailAsync(someEmail);
 
             res.Should().BeNull();
+        }
+
+        [Fact]
+        public async void ReturnIdOnUserInsert()
+        {
+            var someRegistration = new RegistrationBasic()
+            {
+                Email = "email",
+                Password = "password",
+                Username = "username",
+            };
+
+            var userRepositoryMock = new Mock<IUserRepository>();
+            var userService = new UserService(userRepositoryMock.Object);
+
+            userRepositoryMock.Setup(_ => _.InsertAsync(It.IsAny<UserBasic>())).ReturnsAsync(1);
+
+            var res = await userService.CreateUserAsync(someRegistration);
+
+            Assert.Equal(1, res);
         }
     }
 }
