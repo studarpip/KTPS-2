@@ -150,5 +150,18 @@ namespace KTPS.Model.Tests.Services.User
 
             Assert.Equal(1, res);
         }
+
+        [Fact]
+        public async void ShouldCallUpdateOnce()
+        { 
+            var updatedUser = new UserBasic() { };
+
+            var userRepositoryMock = new Mock<IUserRepository>();
+            var userService = new UserService(userRepositoryMock.Object);
+
+            await userService.UpdateUserAsync(updatedUser);
+
+            userRepositoryMock.Verify(repository => repository.UpdateUserAsync(updatedUser), Times.Once);
+        }
     }
 }
