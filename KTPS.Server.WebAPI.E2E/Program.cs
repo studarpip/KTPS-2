@@ -6,6 +6,7 @@ class Program
     {
         var tests = new List<E2E>
         {
+            new RegistrationFlowE2E()
         };
 
         foreach (var test in tests)
