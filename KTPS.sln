@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KTPS.Model", "KTPS.Model\KT
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KTPS.Model.Tests", "KTPS.Model.Tests\KTPS.Model.Tests.csproj", "{D6376A20-D27B-4371-89C7-C418C60054DD}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KTPS.Server.WebAPI.E2E", "KTPS.Server.WebAPI.E2E\KTPS.Server.WebAPI.E2E.csproj", "{01493151-02D7-429B-A8CA-1EDA6BD40B88}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{D6376A20-D27B-4371-89C7-C418C60054DD}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D6376A20-D27B-4371-89C7-C418C60054DD}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D6376A20-D27B-4371-89C7-C418C60054DD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{01493151-02D7-429B-A8CA-1EDA6BD40B88}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{01493151-02D7-429B-A8CA-1EDA6BD40B88}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{01493151-02D7-429B-A8CA-1EDA6BD40B88}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{01493151-02D7-429B-A8CA-1EDA6BD40B88}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
