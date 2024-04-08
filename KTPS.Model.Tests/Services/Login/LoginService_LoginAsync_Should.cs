@@ -57,4 +57,20 @@ public class LoginService_LoginAsync_Should
         var exceptedRes = new ServerResult<int>() { Success = true, Data = 5 };
         res.Should().BeEquivalentTo(exceptedRes);
     }
+
+    [Fact]
+    public async void ReturnErrorOnException()
+    {
+        var userService = new Mock<IUserService>();
+        var passwordResetRepository = new Mock<IPasswordResetRepository>();
+
+        var loginService = new LoginService(userService.Object, passwordResetRepository.Object);
+        userService.Setup(_ => _.GetUserByUsernameAsync("test_user")).Throws(new Exception());
+
+        var loginRequest = new LoginRequest() { Username = "test_user", Password = "test_password" };
+        var res = await loginService.LoginAsync(loginRequest);
+
+        var exceptedRes = new ServerResult<int>() { Success = false, Message = "Technical error!" };
+        res.Should().BeEquivalentTo(exceptedRes);
+    }
 }
