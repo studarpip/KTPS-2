@@ -69,6 +69,7 @@ namespace KTPS.Model.Tests.Services.User
 
             Assert.False(res);
         }
+
         [Fact]
         public async void ReturnUserIfUserIsFoundByUsername()
         {
@@ -95,6 +96,36 @@ namespace KTPS.Model.Tests.Services.User
             userRepositoryMock.Setup(_ => _.GetByUsernameAsync(someUsername)).ReturnsAsync(null as UserBasic);
 
             var res = await userService.GetUserByUsernameAsync(someUsername);
+
+            res.Should().BeNull();
+        }
+
+        [Fact]
+        public async void ReturnUserIfUserIsFoundByEmail()
+        {
+            var someEmail = "email";
+
+            var userRepositoryMock = new Mock<IUserRepository>();
+            var userService = new UserService(userRepositoryMock.Object);
+
+            userRepositoryMock.Setup(_ => _.GetByEmailAsync(someEmail)).ReturnsAsync(new UserBasic());
+
+            var res = await userService.GetUserByEmailAsync(someEmail);
+
+            res.Should().BeEquivalentTo(new UserBasic());
+        }
+
+        [Fact]
+        public async void ReturnNullIfUserIsNotFoundByEmail()
+        {
+            var someEmail = "email";
+
+            var userRepositoryMock = new Mock<IUserRepository>();
+            var userService = new UserService(userRepositoryMock.Object);
+
+            userRepositoryMock.Setup(_ => _.GetByEmailAsync(someEmail)).ReturnsAsync(null as UserBasic);
+
+            var res = await userService.GetUserByEmailAsync(someEmail);
 
             res.Should().BeNull();
         }
