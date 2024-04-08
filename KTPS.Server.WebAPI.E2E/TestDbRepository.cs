@@ -17,7 +17,7 @@ public class TestDbRepository
 {
     public TestDbRepository() { }
 
-    private string TestDbConnectionString = "server=127.0.0.1;port=3306;uid=ktps2testuser;pwd=;database=ktps2test";
+    private string TestDbConnectionString = "datasource=127.0.0.1;port=3306;username=root;password=planetynas123;database=ktps2";
 
     public async Task<IEnumerable<TRes>> QueryListAsync<TRes, T>(string command, T parameters)
     {

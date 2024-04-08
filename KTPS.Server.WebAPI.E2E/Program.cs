@@ -1,4 +1,6 @@
-﻿namespace KTPS.Server.WebAPI.E2E;
+﻿using KTPS.Server.WebAPI.E2E.Controllers;
+
+namespace KTPS.Server.WebAPI.E2E;
 
 class Program
 {
@@ -7,7 +9,9 @@ class Program
         var tests = new List<E2E>
         {
             new RegistrationFlowE2E(),
-            new FriendsFlowE2E()
+            new FriendsFlowE2E(),
+            new LoginFlowE2E(),
+            new ResetPasswordFlowE2E()
         };
 
         foreach (var test in tests)

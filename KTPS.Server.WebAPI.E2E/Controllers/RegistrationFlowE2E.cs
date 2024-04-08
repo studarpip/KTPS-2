@@ -68,7 +68,6 @@ public class RegistrationFlowE2E : RegistrationTestContext, E2E
         createdUser.Email.Should().Be(someEmail);
         createdUser.Username.Should().Be(someUsername);
         createdUser.Password.Should().Be(somePassword.Hash());
-        throw new NotImplementedException();
     }
 }
 
