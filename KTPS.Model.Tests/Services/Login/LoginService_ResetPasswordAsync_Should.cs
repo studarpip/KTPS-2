@@ -68,4 +68,23 @@ public class LoginService_ResetPasswordAsync_Should
         var expectedRes2 = new UserBasic { Password = resetPaswordRequest.NewPassword.Hash() };
         updatedUser.Should().BeEquivalentTo(expectedRes2);
     }
+
+    [Fact]
+    public async void ReturnErrorOnException()
+    {
+        var passwordResetRepository = new Mock<IPasswordResetRepository>();
+        var userRepository = new Mock<IUserRepository>();
+        var userServiceMock = new Mock<IUserService>();
+        var userService = new UserService(userRepository.Object);
+
+        var loginService = new LoginService(userServiceMock.Object, passwordResetRepository.Object);
+        userServiceMock.Setup(_ => _.GetUserByIdAsync(5)).ReturnsAsync(new UserBasic());
+        passwordResetRepository.Setup(_ => _.GetCodeAsync(5)).Throws(new Exception());
+
+        var resetPaswordRequest = new ResetPasswordRequest() { UserID = 5, AuthCheck = "abcdef", NewPassword = "test_password" };
+        var res = await loginService.ResetPasswordAsync(resetPaswordRequest);
+
+        var expecetedRes = new ServerResult { Success = false, Message = "Technical error!" };
+        res.Should().BeEquivalentTo(expecetedRes);
+    }
 }

@@ -46,5 +46,22 @@ namespace KTPS.Model.Tests.Services.Login
             res.Should().BeEquivalentTo(exceptedRes);
             authCode.Count().Should().BeOneOf(6);
         }
+
+        [Fact]
+        public async void ReturnErrorOnException()
+        {
+            var userService = new Mock<IUserService>();
+            var passwordResetRepository = new Mock<IPasswordResetRepository>();
+
+            var loginService = new LoginService(userService.Object, passwordResetRepository.Object);
+            userService.Setup(_ => _.GetUserByEmailAsync("fake_email")).Throws(new Exception());
+
+            var forgotPassswordRequest = new ForgotPasswordRequest() { Email = "fake_email" };
+
+            var res = await loginService.ForgotPasswordAsync(forgotPassswordRequest);
+
+            var exceptedRes = new ServerResult<int>() { Success = false, Message = "Technical error!" };
+            res.Should().BeEquivalentTo(exceptedRes);
+        }
     }
 }
