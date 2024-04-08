@@ -32,5 +32,23 @@ namespace KTPS.Model.Tests.Services.Friends
 
             result.Should().BeEquivalentTo(expectedResult);
         }
+
+        [Fact]
+        public async void ReturnErrorOnException()
+        {
+            var someUserId = 1;
+
+            var friendsRepository = new Mock<IFriendsRepository>();
+
+            friendsRepository.Setup(_ => _.GetFriendListAsync(someUserId)).Throws(new Exception());
+
+            var friendsService = new FriendsService(friendsRepository.Object);
+
+            var result = await friendsService.GetFriendListAsync(someUserId);
+
+            var expectedResult = new ServerResult<IEnumerable<UserMinimal>>() { Success = false, Message = "Technical error!" };
+
+            result.Should().BeEquivalentTo(expectedResult);
+        }
     }
 }
