@@ -39,5 +39,35 @@ namespace KTPS.Model.Tests.Services.User
 
             Assert.False(res);
         }
+
+        [Fact]
+        public async void ReturnTrueIfUserIsFoundByEmail()
+        {
+            var someEmail = "email";
+
+            var userRepositoryMock = new Mock<IUserRepository>();
+            var userService = new UserService(userRepositoryMock.Object);
+
+            userRepositoryMock.Setup(_ => _.GetByEmailAsync(someEmail)).ReturnsAsync(new UserBasic());
+
+            var res = await userService.EmailExistsAsync(someEmail);
+
+            Assert.True(res);
+        }
+
+        [Fact]
+        public async void ReturnFalseIfUserIsNotFoundByEmail()
+        {
+            var someEmail = "email";
+
+            var userRepositoryMock = new Mock<IUserRepository>();
+            var userService = new UserService(userRepositoryMock.Object);
+
+            userRepositoryMock.Setup(_ => _.GetByEmailAsync(someEmail)).ReturnsAsync(null as UserBasic);
+
+            var res = await userService.EmailExistsAsync(someEmail);
+
+            Assert.False(res);
+        }
     }
 }
