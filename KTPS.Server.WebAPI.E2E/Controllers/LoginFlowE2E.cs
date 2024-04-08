@@ -32,6 +32,8 @@ public class LoginFlowE2E : E2E
         var getUserQuery = "SELECT * FROM users WHERE ID = 1";
         var user = await testRepository.QueryAsync<UserBasic>(getUserQuery);
 
+        user.Should().NotBeNull();
+
         user.Username.Should().Be("test_username");
         user.Password.Should().Be("test_password".Hash());
         user.Email.Should().Be("test_email");

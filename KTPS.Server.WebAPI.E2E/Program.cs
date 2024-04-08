@@ -9,7 +9,8 @@ class Program
         var tests = new List<E2E>
         {
             new RegistrationFlowE2E(),
-            new LoginFlowE2E()
+            new LoginFlowE2E(),
+            new ResetPasswordFlowE2E()
         };
 
         foreach (var test in tests)
