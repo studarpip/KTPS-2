@@ -34,5 +34,30 @@ namespace KTPS.Model.Tests.Services.Friends
             friendsRepository.Verify(_ => _.DeleteFriendAsync(someUserId, someFriendId), Times.Once);//Checking if method was called once with these variables and once reversed
             friendsRepository.Verify(_ => _.DeleteFriendAsync(someFriendId, someUserId), Times.Once);
         }
+
+        [Fact]
+        public async void ReturnErrorOnException()
+        {
+            var someUserId = 1;
+            var someFriendId = 2;
+
+            var friendsRepository = new Mock<IFriendsRepository>();
+
+            friendsRepository.Setup(_ => _.DeleteFriendAsync(someUserId, someFriendId)).Throws(new Exception());
+
+            var friendsService = new FriendsService(friendsRepository.Object);
+
+            DeleteFriendRequest deleteFriendRequest = new DeleteFriendRequest
+            {
+                UserID = someUserId,
+                FriendID = someFriendId
+            };
+
+            var result = await friendsService.DeleteFriendAsync(deleteFriendRequest);
+
+            var expectedResult = new ServerResult() { Success = false, Message = "Technical error!" };
+
+            result.Should().BeEquivalentTo(expectedResult);
+        }
     }
 }
