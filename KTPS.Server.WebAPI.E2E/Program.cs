@@ -6,7 +6,8 @@ class Program
     {
         var tests = new List<E2E>
         {
-            new RegistrationFlowE2E()
+            new RegistrationFlowE2E(),
+            new FriendsFlowE2E()
         };
 
         foreach (var test in tests)
