@@ -14,6 +14,8 @@ using KTPS.Model.Services.User;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using KTPS.Model.Services.Notifications;
+using KTPS.Model.Services.Groups;
 
 namespace KTPS.Server.WebAPI;
 
@@ -68,5 +70,7 @@ public class Program
         services.AddSingleton<INotificationRepository, NotificationRepository>();
         services.AddSingleton<IFriendsRepository, FriendsRepository>();
         services.AddSingleton<ILoginService, LoginService>();
+        services.AddSingleton<INotificationService, NotificationService>();
+        services.AddSingleton<IGroupsService, GroupsService>();
     }
 }
