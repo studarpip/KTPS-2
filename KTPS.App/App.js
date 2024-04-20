@@ -1,33 +1,51 @@
-import React from "react";
-import { createAppContainer } from "react-navigation";
-import { createStackNavigator } from "react-navigation-stack";
+import { createDrawerNavigator, DrawerContentScrollView, DrawerItemList, DrawerItem } from '@react-navigation/drawer';
+import { NavigationContainer } from '@react-navigation/native';
+import { createStackNavigator } from '@react-navigation/stack';
 import Login from "./components/Login";
 import Register from "./components/Register";
+import MainForm from "./components/Main";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
-const RootStack = createStackNavigator(
-  {
-    Login: {
-      screen: Login,
-      navigationOptions: {
-        headerShown: false,
-      }
-    },
-    Register: {
-      screen: Register,
-      navigationOptions: {
-        headerTitle: () => false,
-      }
-    },
-  },
-  {
-    initialRouteName: "Login"
-  }
+const Drawer = createDrawerNavigator();
+const Stack = createStackNavigator();
+
+const MainFormStackScreen = () => (
+  <Stack.Navigator screenOptions={{ headerShown: false }}>
+    <Stack.Screen name="MainForm" component={MainForm} />
+  </Stack.Navigator>
 );
 
-const AppContainer = createAppContainer(RootStack);
+const CustomDrawerContent = (props) => (
+  <DrawerContentScrollView {...props}>
+    <DrawerItemList {...props} />
+    <DrawerItem
+      label="Logout"
+      onPress={async () => {
+        props.navigation.closeDrawer();
+        await AsyncStorage.removeItem('userId');
+        props.navigation.replace("Login");
+      }}
+    />
+  </DrawerContentScrollView>
+);
 
-export default class App extends React.Component {
-  render() {
-    return <AppContainer />;
-  }
+const App = () => {
+  return (
+    <NavigationContainer>
+      <Stack.Navigator initialRouteName="Login" screenOptions={{ headerShown: false }}>
+        <Stack.Screen name="Login" component={Login} />
+        <Stack.Screen name="Register" component={Register} />
+        <Stack.Screen name="MainForm" component={MainFormDrawer} />
+      </Stack.Navigator>
+    </NavigationContainer>
+  );
 }
+
+const MainFormDrawer = () => (
+  <Drawer.Navigator drawerContent={props => <CustomDrawerContent {...props} />}>
+    <Drawer.Screen name="Home" component={MainFormStackScreen} />
+    {/* NOTIFICATIONS, PROFILE, FRIENDS, GROUPS */}
+  </Drawer.Navigator>
+);
+
+export default App;
