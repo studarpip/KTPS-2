@@ -51,8 +51,7 @@ export default function LoginForm({ navigation }) {
   const checkLoggedIn = async () => {
     const userId = await AsyncStorage.getItem("userId")
     if (userId) {
-      Alert.alert("Welcome back!");
-      await AsyncStorage.removeItem('userId');
+      navigation.replace('MainForm')
     }
   };
 
@@ -214,6 +213,7 @@ export default function LoginForm({ navigation }) {
         if (remember)
           await AsyncStorage.setItem('userId', data.data.toString());
         setUser(data.data);
+        navigation.replace('MainForm')
       } else {
         Alert.alert('Error', data.message);
       }

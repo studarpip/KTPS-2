@@ -59,7 +59,7 @@ export default function RegisterForm({ navigation }) {
             if (data.success == true) {
                 await AsyncStorage.setItem('userId', data.data.toString());
                 Alert.alert('Success', 'Succesfully registered!')
-                navigation.navigate('Login');
+                navigation.replace('MainForm');
             } else {
                 Alert.alert('Error', data.message);
             }
