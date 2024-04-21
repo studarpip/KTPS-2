@@ -49,8 +49,9 @@ export default function LoginForm({ navigation }) {
   };
 
   const checkLoggedIn = async () => {
-    const userId = await AsyncStorage.getItem("userId")
+    const userId = await AsyncStorage.getItem("rememberedUserId")
     if (userId) {
+      await AsyncStorage.setItem('userId', userId);
       navigation.replace('MainForm')
     }
   };
@@ -211,7 +212,8 @@ export default function LoginForm({ navigation }) {
       if (data.success == true) {
         Alert.alert('Success', 'Login successful!');
         if (remember)
-          await AsyncStorage.setItem('userId', data.data.toString());
+          await AsyncStorage.setItem('rememberedUserId', data.data.toString());
+        await AsyncStorage.setItem('userId', data.data.toString());
         setUser(data.data);
         navigation.replace('MainForm')
       } else {
