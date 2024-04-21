@@ -17,7 +17,7 @@ public class TestDbRepository
 {
     public TestDbRepository() { }
 
-    private string TestDbConnectionString = "datasource=127.0.0.1;port=3306;username=root;password=;database=ktps2";
+    private string TestDbConnectionString = "datasource=127.0.0.1;port=3306;username=root;password=root;database=ktps2";
     // private string TestDbConnectionString = "datasource=127.0.0.1;port=3306;username=ktps2testuser;password=;database=ktps2test";
 
 
