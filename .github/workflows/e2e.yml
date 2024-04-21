@@ -30,6 +30,6 @@ jobs:
       - name: Build
         run: dotnet build --no-restore
       - name: Start the server
-        run: dotnet run --project .\KTPS.Server.WebAPI\ &
+        run: dotnet run --project KTPS.Server.WebAPI &
       - name: Run E2E
-        run: dotnet run --project .\KTPS.Server.WebAPI.E2E\
+        run: dotnet run --project KTPS.Server.WebAPI.E2E
