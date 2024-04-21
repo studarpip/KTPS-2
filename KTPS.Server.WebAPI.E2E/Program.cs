@@ -17,7 +17,10 @@ class Program
         foreach (var test in tests)
         {
             await test.Test();
+            Console.WriteLine(test.GetType() + " passed");
         }
+
+        Console.WriteLine("All test passed!");
     }
 }
 
