@@ -210,7 +210,6 @@ export default function LoginForm({ navigation }) {
 
       const data = await response.json();
       if (data.success == true) {
-        Alert.alert('Success', 'Login successful!');
         if (remember)
           await AsyncStorage.setItem('rememberedUserId', data.data.toString());
         await AsyncStorage.setItem('userId', data.data.toString());

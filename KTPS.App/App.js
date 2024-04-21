@@ -7,6 +7,7 @@ import MainForm from "./components/Main";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import FriendsForm from './components/Friends';
 import FindFriends from './components/FindFriends';
+import Notifications from './components/Notifications';
 
 const Drawer = createDrawerNavigator();
 const Stack = createStackNavigator();
@@ -55,7 +56,8 @@ const MainFormDrawer = () => (
   <Drawer.Navigator drawerContent={props => <CustomDrawerContent {...props} />}>
     <Drawer.Screen name="Home" component={MainFormStackScreen} />
     <Drawer.Screen name="Friends" component={FriendsStackScreen} />
-    {/* NOTIFICATIONS, PROFILE */}
+    <Drawer.Screen name='Notifications' component={Notifications} />
+    {/* PROFILE */}
   </Drawer.Navigator>
 );
 

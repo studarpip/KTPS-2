@@ -3,10 +3,13 @@ import { View, Text, TouchableOpacity, FlatList, RefreshControl, StyleSheet, Ale
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import * as Constants from '../constants.js';
 import Icon from 'react-native-vector-icons/FontAwesome';
+import { useIsFocused } from "@react-navigation/native";
+
 
 const FriendsForm = ({ navigation }) => {
     const [friends, setFriends] = useState([]);
     const [refreshing, setRefreshing] = useState(false);
+    const isFocused = useIsFocused();
 
     const fetchFriends = async () => {
         const userId = await AsyncStorage.getItem("userId");
@@ -74,6 +77,11 @@ const FriendsForm = ({ navigation }) => {
     useEffect(() => {
         fetchFriends();
     }, []);
+
+    useEffect(() => {
+        if(isFocused)
+            fetchFriends();
+    }, [isFocused]);
 
     const handleFindFriends = () => {
         navigation.navigate('FindFriends');
