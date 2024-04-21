@@ -22,7 +22,7 @@ jobs:
       - name: Set up MySQL
         run: |
           sudo /etc/init.d/mysql start
-          mysql -e 'CREATE DATABASE ktps2;' -u root -p root
+          mysql -e 'CREATE DATABASE ktps2;' -u root
       - name: Set dev env
         run: set ASPNETCORE_ENVIRONMENT=Development
       - name: Restore dependencies
