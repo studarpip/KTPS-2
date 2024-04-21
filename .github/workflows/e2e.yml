@@ -25,6 +25,8 @@ jobs:
           mysql -e 'CREATE DATABASE ktps2;' -uroot -proot
       - name: Set dev env
         run: set ASPNETCORE_ENVIRONMENT=Development
+      - name: Trust localhost cert
+        run: dotnet dev-certs https --trust
       - name: Restore dependencies
         run: dotnet restore
       - name: Build
