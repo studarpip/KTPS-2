@@ -51,7 +51,9 @@ namespace KTPS.Model.Services.Friends
             try
             {
                 var availableFriends = await _friendsRepository.FindFriendAsync(request.Input);
-                var filteredFriends = availableFriends.Where(x => x.ID != request.UserID);
+                var currentFriends = await _friendsRepository.GetFriendListAsync(request.UserID);
+                var filteredFriends = availableFriends.Where(x => x.ID != request.UserID && !currentFriends.Any(cf => cf.ID == x.ID));
+
                 return new() { Success = true, Data = filteredFriends };
             }
             catch (Exception)

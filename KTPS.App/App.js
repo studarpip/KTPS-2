@@ -5,6 +5,8 @@ import Login from "./components/Login";
 import Register from "./components/Register";
 import MainForm from "./components/Main";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import FriendsForm from './components/Friends';
+import FindFriends from './components/FindFriends';
 
 const Drawer = createDrawerNavigator();
 const Stack = createStackNavigator();
@@ -15,6 +17,13 @@ const MainFormStackScreen = () => (
   </Stack.Navigator>
 );
 
+const FriendsStackScreen = () => (
+  <Stack.Navigator initialRouteName="FriendsPage" screenOptions={{ headerShown: false }}>
+    <Stack.Screen name="FriendsPage" component={FriendsForm} />
+    <Stack.Screen name="FindFriends" component={FindFriends} />
+  </Stack.Navigator>
+);
+
 const CustomDrawerContent = (props) => (
   <DrawerContentScrollView {...props}>
     <DrawerItemList {...props} />
@@ -22,6 +31,7 @@ const CustomDrawerContent = (props) => (
       label="Logout"
       onPress={async () => {
         props.navigation.closeDrawer();
+        await AsyncStorage.removeItem('rememberedUserId');
         await AsyncStorage.removeItem('userId');
         props.navigation.replace("Login");
       }}
@@ -44,7 +54,8 @@ const App = () => {
 const MainFormDrawer = () => (
   <Drawer.Navigator drawerContent={props => <CustomDrawerContent {...props} />}>
     <Drawer.Screen name="Home" component={MainFormStackScreen} />
-    {/* NOTIFICATIONS, PROFILE, FRIENDS, GROUPS */}
+    <Drawer.Screen name="Friends" component={FriendsStackScreen} />
+    {/* NOTIFICATIONS, PROFILE */}
   </Drawer.Navigator>
 );
 
