@@ -48,4 +48,12 @@ public class ItemMemberRepository : IItemMemberRepository
 
         await _repository.ExecuteAsync<dynamic>(sql, new { UserId = userId });
     }
+
+	public async Task DeleteByItemId(int itemId)
+	{
+		var sql = @"DELETE FROM `item_members`
+					WHERE `ItemId` = @ItemId";
+
+		await _repository.ExecuteAsync<dynamic>(sql, new { ItemId = itemId });
+	}
 }

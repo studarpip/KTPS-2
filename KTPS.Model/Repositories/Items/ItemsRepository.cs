@@ -36,7 +36,7 @@ public class ItemsRepository : IItemsRepository
 
     public async Task UpdateAsync(ItemBasic item)
     {
-        var sql = @"UPDATE `items SET`
+        var sql = @"UPDATE `items` SET
 					`GroupId` = @GroupId,
 					`Name` = @Name,
 					`Quantity` = @Quantity,
@@ -53,5 +53,13 @@ public class ItemsRepository : IItemsRepository
 					WHERE `GroupId` = @GroupId";
 
         return await _repository.QueryListAsync<ItemBasic, dynamic>(sql, new { GroupId = groupId });
+    }
+
+    public async Task DeleteAsync(int id)
+    {
+        var sql = @"DELETE FROM `items`
+					WHERE `Id` = @Id";
+
+        await _repository.ExecuteAsync<dynamic>(sql, new { Id = id });
     }
 }

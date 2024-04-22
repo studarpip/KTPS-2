@@ -10,4 +10,5 @@ public interface IItemMembersService
     Task<IEnumerable<ItemMemberBasic>> GetMembersAsync(int itemId);
     Task RemoveGuestAsync(int guestId);
     Task RemoveUserAsync(int userId);
+    Task DeleteByItemIdAsync(int itemId);
 }

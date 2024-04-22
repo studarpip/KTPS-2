@@ -66,11 +66,14 @@ public class ItemsService : IItemsService
             if (item is null)
                 return new() { Success = false, Message = "Item does not exist!" };
 
+            item.Name = request.Name;
+            item.Price = request.Price;
+            item.Quantity = request.Quantity;
             await _itemsRepository.UpdateAsync(item);
 
             var members = await _itemMembersService.GetMembersAsync(request.ItemId);
-            var guests = members.Where(x => x.GuestId is not null).Select(x => x.Id).ToList();
-            var users = members.Where(x => x.UserId is not null).Select(x => x.Id).ToList();
+            var guests = members.Where(x => x.GuestId is not null).Select(x => x.GuestId.Value).ToList();
+            var users = members.Where(x => x.UserId is not null).Select(x => x.UserId.Value).ToList();
 
             var guestsToAdd = request.GuestIds.Where(x => !guests.Contains(x));
             var usersToAdd = request.UserIds.Where(x => !users.Contains(x));
@@ -84,7 +87,7 @@ public class ItemsService : IItemsService
             var guestsToRemove = guests.Where(x => !request.GuestIds.Contains(x));
             var usersToRemove = users.Where(x => !request.UserIds.Contains(x));
 
-            foreach (var guest in guestsToAdd)
+            foreach (var guest in guestsToRemove)
                 await _itemMembersService.RemoveGuestAsync(guest);
 
             foreach (var user in usersToRemove)
@@ -99,4 +102,41 @@ public class ItemsService : IItemsService
     }
 
     public async Task<IEnumerable<ItemBasic>> GetGroupItemsAsync(int groupId) => await _itemsRepository.GetByGroupAsync(groupId);
+
+    public async Task<ServerResult<IEnumerable<ItemBasic>>> GetGroupItemListAsync(int groupId)
+    {
+        try
+        {
+            var group = await _groupsService.GetGroupBasicAsync(groupId);
+            if (group is null)
+                return new() { Success = false, Message = "Group does not exist!" };
+
+            var items = await _itemsRepository.GetByGroupAsync(groupId);
+            return new() { Success = true, Data = items };
+        }
+        catch (Exception)
+        {
+            return new() { Success = false, Message = "Technical error!" };
+        }
+    }
+
+    public async Task<ServerResult> DeleteItemAsync(int itemId)
+    {
+        // TO DO: Add database context
+        try
+        {
+            var item = await _itemsRepository.GetAsync(itemId);
+            if (item is null)
+                return new() { Success = false, Message = "Item does not exist!" };
+
+            await _itemsRepository.DeleteAsync(itemId);
+            await _itemMembersService.DeleteByItemIdAsync(itemId);
+
+            return new() { Success = true };
+        }
+        catch (Exception)
+        {
+            return new() { Success = false, Message = "Technical error!" };
+        }
+    }
 }
