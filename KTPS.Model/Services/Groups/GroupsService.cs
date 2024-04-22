@@ -34,10 +34,6 @@ public class GroupsService : IGroupsService
     {
         try
         {
-            var userGroups = await _groupsRepository.GetUserGroupsAsync(request.UserID);
-            if (userGroups.Any(x => x.Name == request.Name))
-                return new() { Success = true, Message = $"Group with name {request.Name} already exists!" };
-
             var ID = await _groupsRepository.InsertAsync(new()
             {
                 Name = request.Name,
@@ -146,9 +142,10 @@ public class GroupsService : IGroupsService
                 return new() { Success = false, Message = "Group does not exist!" };
 
             var members = await _groupMembersRepository.GetByGroupIDAsync(groupID);
+            var filteredMembers = members.Where(x => x.UserID != group.OwnerUserID);
             var guests = await _guestsRepository.GetByGroupID(groupID);
 
-            return new() { Success = true, Data = new() { Guests = guests.ToList(), Members = members.ToList(), OwnerUserID = group.OwnerUserID } };
+            return new() { Success = true, Data = new() { Guests = guests.ToList(), Members = filteredMembers.ToList(), OwnerUserID = group.OwnerUserID } };
         }
         catch (Exception)
         {

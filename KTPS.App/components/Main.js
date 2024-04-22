@@ -1,7 +1,12 @@
-import { Text } from 'react-native';;
+import { useEffect } from 'react';
 
 export default function MainForm({ navigation }) {
-  return (
-    <Text>GROUP PAGE WILL GO HERE</Text>
-  );
+  useEffect(() => {
+    const unsubscribe = navigation.addListener('focus', () => {
+      navigation.replace('Groups');
+    });
+    return unsubscribe;
+  }, [navigation]);
+  
+  return null;
 }

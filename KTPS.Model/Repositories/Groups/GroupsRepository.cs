@@ -18,11 +18,15 @@ public class GroupsRepository : IGroupsRepository
     public async Task<IEnumerable<GroupBasic>> GetUserGroupsAsync(int userId)
     {
         var sql = @"
-            SELECT ID, Name, OwnerUserID
-            FROM user_groups
-            WHERE OwnerUserID = @OwnerUserID;";
+            SELECT ug.ID, ug.Name, ug.OwnerUserID
+            FROM user_groups ug
+            INNER JOIN (
+                SELECT gm.GroupID
+                FROM group_members gm
+                WHERE gm.UserID = @UserID
+            ) gm ON ug.ID = gm.GroupID;";
 
-        return await _repository.QueryListAsync<GroupBasic, dynamic>(sql, new { OwnerUserID = userId });
+        return await _repository.QueryListAsync<GroupBasic, dynamic>(sql, new { UserID = userId });
     }
 
     public async Task<GroupBasic> GetGroupAsync(int id)
@@ -62,10 +66,5 @@ public class GroupsRepository : IGroupsRepository
             WHERE ID = @Id";
 
         await _repository.ExecuteAsync<dynamic>(sql, new { Id = id });
-    }
-
-    public async Task<GroupBasic> GetGroupInfoAsync(int groupId)
-    {
-        throw new System.NotImplementedException();
     }
 }
