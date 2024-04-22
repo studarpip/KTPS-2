@@ -16,6 +16,8 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using KTPS.Model.Services.Notifications;
 using KTPS.Model.Services.Groups;
+using KTPS.Model.Services.Items;
+using KTPS.Model.Repositories.Items;
 
 namespace KTPS.Server.WebAPI;
 
@@ -72,5 +74,8 @@ public class Program
         services.AddSingleton<ILoginService, LoginService>();
         services.AddSingleton<INotificationService, NotificationService>();
         services.AddSingleton<IGroupsService, GroupsService>();
+        services.AddSingleton<IItemsService, ItemsService>();
+        services.AddSingleton<IItemsRepository, ItemsRepository>();
+        services.AddSingleton<IItemMemberRepository, ItemMemberRepository>();
     }
 }

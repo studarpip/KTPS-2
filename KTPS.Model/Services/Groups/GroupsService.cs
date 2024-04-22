@@ -5,7 +5,6 @@ using KTPS.Model.Entities.Responses;
 using KTPS.Model.Repositories.GroupMembers;
 using KTPS.Model.Repositories.Groups;
 using KTPS.Model.Repositories.Guests;
-using Org.BouncyCastle.Asn1.Ocsp;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -211,4 +210,6 @@ public class GroupsService : IGroupsService
             return new() { Success = false, Message = "Technical error!" };
         }
     }
+
+    public async Task<GroupBasic> GetGroupBasicAsync(int groupId) => await _groupsRepository.GetGroupAsync(groupId);
 }
