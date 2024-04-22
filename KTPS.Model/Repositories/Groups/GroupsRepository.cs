@@ -63,4 +63,9 @@ public class GroupsRepository : IGroupsRepository
 
         await _repository.ExecuteAsync<dynamic>(sql, new { Id = id });
     }
+
+    public async Task<GroupBasic> GetGroupInfoAsync(int groupId)
+    {
+        throw new System.NotImplementedException();
+    }
 }

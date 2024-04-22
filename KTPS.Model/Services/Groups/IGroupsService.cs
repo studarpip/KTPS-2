@@ -18,4 +18,5 @@ public interface IGroupsService
     Task<ServerResult<int>> AddGuestAsync(AddGuestRequest request);
     Task<ServerResult> AddGroupMemberAsync(int groupId, int userId);
     Task<ServerResult> LeaveGroupAsync(LeaveGroupRequest request);
+    Task<ServerResult<GroupBasic>> GetGroupInfoAsync(int groupId);
 }

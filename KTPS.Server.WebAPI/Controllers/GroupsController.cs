@@ -44,4 +44,7 @@ public class GroupsController
 
     [HttpPost("leave")]
     public async Task<ServerResult> LeaveGroupAsync([FromBody] LeaveGroupRequest request) => await _groupsService.LeaveGroupAsync(request);
+
+    [HttpGet("{groupId}/info")]
+    public async Task<ServerResult<GroupBasic>> GetGroupInfoAsync(int groupId) => await _groupsService.GetGroupInfoAsync(groupId);
 }

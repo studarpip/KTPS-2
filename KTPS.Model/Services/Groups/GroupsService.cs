@@ -5,6 +5,7 @@ using KTPS.Model.Entities.Responses;
 using KTPS.Model.Repositories.GroupMembers;
 using KTPS.Model.Repositories.Groups;
 using KTPS.Model.Repositories.Guests;
+using Org.BouncyCastle.Asn1.Ocsp;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -191,6 +192,19 @@ public class GroupsService : IGroupsService
         {
             await _groupMembersRepository.DeleteGroupMemberAsync(request.UserID, request.GroupID);
             return new() { Success = true };
+        }
+        catch (Exception)
+        {
+            return new() { Success = false, Message = "Technical error!" };
+        }
+    }
+
+    public async Task<ServerResult<GroupBasic>> GetGroupInfoAsync(int groupId)
+    {
+        try
+        {
+            var group = await _groupsRepository.GetGroupAsync(groupId);
+            return new() { Success = true, Data = group };
         }
         catch (Exception)
         {
