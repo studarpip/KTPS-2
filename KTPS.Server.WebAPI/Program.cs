@@ -74,8 +74,9 @@ public class Program
         services.AddSingleton<ILoginService, LoginService>();
         services.AddSingleton<INotificationService, NotificationService>();
         services.AddSingleton<IGroupsService, GroupsService>();
-        services.AddSingleton<IItemsService, ItemsService>();
-        services.AddSingleton<IItemsRepository, ItemsRepository>();
         services.AddSingleton<IItemMemberRepository, ItemMemberRepository>();
+        services.AddSingleton<IItemMembersService, ItemMembersService>();
+        services.AddSingleton<IItemsRepository, ItemsRepository>();
+        services.AddSingleton<IItemsService, ItemsService>();
     }
 }
