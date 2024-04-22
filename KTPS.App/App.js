@@ -8,6 +8,8 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 import FriendsForm from './components/Friends';
 import FindFriends from './components/FindFriends';
 import Notifications from './components/Notifications';
+import GroupList from './components/GroupList';
+import GroupInfo from './components/GroupInfo';
 
 const Drawer = createDrawerNavigator();
 const Stack = createStackNavigator();
@@ -15,6 +17,8 @@ const Stack = createStackNavigator();
 const MainFormStackScreen = () => (
   <Stack.Navigator screenOptions={{ headerShown: false }}>
     <Stack.Screen name="MainForm" component={MainForm} />
+    <Stack.Screen name="Groups" component={GroupList} />
+    <Stack.Screen name="GroupInfo" component={GroupInfo} />
   </Stack.Navigator>
 );
 
