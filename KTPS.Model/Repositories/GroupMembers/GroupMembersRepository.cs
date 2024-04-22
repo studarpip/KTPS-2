@@ -46,8 +46,10 @@ public class GroupMembersRepository : IGroupMembersRepository
     public async Task<IEnumerable<GroupMember>> GetByGroupIDAsync(int groupId)
     {
         var sql = @"
-            SELECT Id, GroupID, UserID from group_members
-            WHERE GroupID = @GroupID;";
+            SELECT gm.Id, gm.GroupID, gm.UserID, u.Username
+            FROM group_members AS gm
+            LEFT JOIN users AS u ON gm.UserID = u.ID
+            WHERE gm.GroupID = @GroupID";
 
         return await _repository.QueryListAsync<GroupMember, dynamic>(sql, new { GroupID = groupId });
     }
