@@ -1,0 +1,7 @@
+CREATE TABLE `items` (
+    `Id` INT AUTO_INCREMENT PRIMARY KEY,
+    `GroupId` INT NOT NULL,
+    `Name` VARCHAR(255) NOT NULL,
+    `Quantity` INT NOT NULL,
+    `Price` DECIMAL(10, 2) NOT NULL
+);

@@ -1,0 +1,6 @@
+CREATE TABLE `item_members` (
+    `Id` INT AUTO_INCREMENT PRIMARY KEY,
+    `ItemId`INT NOT NULL,
+    `GuestId` INT NOT NULL,
+    `UserId` INT NOT NULL
+);
