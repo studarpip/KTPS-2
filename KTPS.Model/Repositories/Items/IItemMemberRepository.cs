@@ -10,4 +10,5 @@ public interface IItemMemberRepository
     Task<IEnumerable<ItemMemberBasic>> GetListAsync(int itemid);
     Task DeleteGuestAsync(int guestId);
     Task DeleteUserAsync(int userId);
+    Task DeleteByItemId(int itemId);
 }

@@ -41,8 +41,8 @@ public class CalculationService : ICalculationService
             var guests = await _guestsRepository.GetByGroupID(groupId);
             var users = await _groupMembersRepository.GetByGroupIDAsync(groupId);
 
-            var guestCalculations = guests.Select(x => new GuestCalculation { GuestId = x.ID, Amount = 0m, Name = x.Name });
-            var userCalculations = users.Select(x => new UserCalculation { UserId = x.ID, Amount = 0m, Username = x.Username });
+            var guestCalculations = guests.Select(x => new GuestCalculation { GuestId = x.ID, Amount = 0m, Name = x.Name }).ToList();
+            var userCalculations = users.Select(x => new UserCalculation { UserId = x.ID, Amount = 0m, Username = x.Username }).ToList();
 
             foreach (var item in items)
             {
@@ -74,8 +74,8 @@ public class CalculationService : ICalculationService
                 Success = true,
                 Data = new()
                 {
-                    GuestCalculations = guestCalculations.ToList(),
-                    UserCalculations = userCalculations.ToList(),
+                    GuestCalculations = guestCalculations,
+                    UserCalculations = userCalculations,
                     TotalItems = items.Select(x => x.Quantity).Sum(),
                     TotalAmount = items.Select(x => x.Price).Sum()
                 }

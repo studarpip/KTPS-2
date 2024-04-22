@@ -10,4 +10,5 @@ public interface IItemsRepository
     Task<ItemBasic> GetAsync(int itemId);
     Task UpdateAsync(ItemBasic item);
     Task<IEnumerable<ItemBasic>> GetByGroupAsync(int groupId);
+    Task DeleteAsync(int id);
 }

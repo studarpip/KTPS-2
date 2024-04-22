@@ -23,4 +23,6 @@ public class ItemMembersService : IItemMembersService
 	public async Task RemoveUserAsync(int userId) => await _itemMemberRepository.DeleteUserAsync(userId);
 
 	public async Task AddItemMemberAsync(ItemMemberBasic itemMember) => await _itemMemberRepository.InsertAsync(itemMember);
+
+	public async Task DeleteByItemIdAsync(int itemId) => await _itemMemberRepository.DeleteByItemId(itemId);
 }

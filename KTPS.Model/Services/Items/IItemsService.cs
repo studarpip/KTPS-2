@@ -11,4 +11,6 @@ public interface IItemsService
     Task<ServerResult> CreateItemAsync(CreateItemRequest request);
     Task<ServerResult> EditItemAsync(EditItemRequest request);
     Task<IEnumerable<ItemBasic>> GetGroupItemsAsync(int groupId);
+    Task<ServerResult<IEnumerable<ItemBasic>>> GetGroupItemListAsync(int groupId);
+    Task<ServerResult> DeleteItemAsync(int itemId);
 }
