@@ -11,7 +11,8 @@ class Program
             new RegistrationFlowE2E(),
             new FriendsFlowE2E(),
             new LoginFlowE2E(),
-            new ResetPasswordFlowE2E()
+            new ResetPasswordFlowE2E(),
+            new GroupsFlowE2E()
         };
 
         foreach (var test in tests)
