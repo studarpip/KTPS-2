@@ -18,6 +18,7 @@ using KTPS.Model.Services.Notifications;
 using KTPS.Model.Services.Groups;
 using KTPS.Model.Services.Items;
 using KTPS.Model.Repositories.Items;
+using KTPS.Model.Services.Calculation;
 
 namespace KTPS.Server.WebAPI;
 
@@ -78,5 +79,6 @@ public class Program
         services.AddSingleton<IItemMembersService, ItemMembersService>();
         services.AddSingleton<IItemsRepository, ItemsRepository>();
         services.AddSingleton<IItemsService, ItemsService>();
+		services.AddSingleton<ICalculationService, CalculationService>();
     }
 }

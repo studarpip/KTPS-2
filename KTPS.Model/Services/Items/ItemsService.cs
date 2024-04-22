@@ -1,8 +1,10 @@
 ﻿using KTPS.Model.Entities;
+using KTPS.Model.Entities.Items;
 using KTPS.Model.Entities.Requests;
 using KTPS.Model.Repositories.Items;
 using KTPS.Model.Services.Groups;
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -95,4 +97,6 @@ public class ItemsService : IItemsService
             return new() { Success = false, Message = "Technical error!" };
         }
     }
+
+    public async Task<IEnumerable<ItemBasic>> GetGroupItemsAsync(int groupId) => await _itemsRepository.GetByGroupAsync(groupId);
 }

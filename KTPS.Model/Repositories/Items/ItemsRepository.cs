@@ -1,5 +1,6 @@
 ﻿using KTPS.Model.Entities.Items;
 using KTPS.Model.Helpers;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace KTPS.Model.Repositories.Items;
@@ -43,5 +44,14 @@ public class ItemsRepository : IItemsRepository
 					WHERE Id = @Id;";
 
         await _repository.ExecuteAsync<dynamic>(sql, item.MapValuesFromEntity());
+    }
+
+    public async Task<IEnumerable<ItemBasic>> GetByGroupAsync(int groupId)
+    {
+        var sql = @"SELECT `Id`, `GroupId`, `Name`, `Quantity`, `Price`
+					FROM `items`
+					WHERE `GroupId` = @GroupId";
+
+        return await _repository.QueryListAsync<ItemBasic, dynamic>(sql, new { GroupId = groupId });
     }
 }
