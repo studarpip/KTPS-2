@@ -184,4 +184,17 @@ public class GroupsService : IGroupsService
             return new() { Success = false, Message = "Technical error!" };
         }
     }
+
+    public async Task<ServerResult> LeaveGroupAsync(LeaveGroupRequest request)
+    {
+        try
+        {
+            await _groupMembersRepository.DeleteGroupMemberAsync(request.UserID, request.GroupID);
+            return new() { Success = true };
+        }
+        catch (Exception)
+        {
+            return new() { Success = false, Message = "Technical error!" };
+        }
+    }
 }

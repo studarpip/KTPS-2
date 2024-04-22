@@ -41,4 +41,7 @@ public class GroupsController
 
     [HttpPost("add_guest")]
     public async Task<ServerResult<int>> AddGuestAsync([FromBody] AddGuestRequest request) => await _groupsService.AddGuestAsync(request);
+
+    [HttpPost("leave")]
+    public async Task<ServerResult> LeaveGroupAsync([FromBody] LeaveGroupRequest request) => await _groupsService.LeaveGroupAsync(request);
 }
