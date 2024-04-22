@@ -3,6 +3,7 @@ using KTPS.Model.Entities.Requests;
 using KTPS.Model.Repositories.Items;
 using KTPS.Model.Services.Groups;
 using System;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace KTPS.Model.Services.Items;
@@ -45,6 +46,47 @@ public class ItemsService : IItemsService
 
             foreach (var userId in request.UserIds)
                 await _itemMembersService.AddItemMemberAsync(new() { ItemId = id, UserId = userId });
+
+            return new() { Success = true };
+        }
+        catch (Exception)
+        {
+            return new() { Success = false, Message = "Technical error!" };
+        }
+    }
+
+    public async Task<ServerResult> EditItemAsync(EditItemRequest request)
+    {
+        // TO DO: Add database context
+        try
+        {
+            var item = await _itemsRepository.GetAsync(request.ItemId);
+            if (item is null)
+                return new() { Success = false, Message = "Item does not exist!" };
+
+            await _itemsRepository.UpdateAsync(item);
+
+            var members = await _itemMembersService.GetMembersAsync(request.ItemId);
+            var guests = members.Where(x => x.GuestId is not null).Select(x => x.Id).ToList();
+            var users = members.Where(x => x.UserId is not null).Select(x => x.Id).ToList();
+
+            var guestsToAdd = request.GuestIds.Where(x => !guests.Contains(x));
+            var usersToAdd = request.UserIds.Where(x => !users.Contains(x));
+
+            foreach (var guest in guestsToAdd)
+                await _itemMembersService.AddItemMemberAsync(new() { ItemId = request.ItemId, GuestId = guest });
+
+            foreach (var user in usersToAdd)
+                await _itemMembersService.AddItemMemberAsync(new() { ItemId = request.ItemId, UserId = user });
+
+            var guestsToRemove = guests.Where(x => !request.GuestIds.Contains(x));
+            var usersToRemove = users.Where(x => !request.UserIds.Contains(x));
+
+            foreach (var guest in guestsToAdd)
+                await _itemMembersService.RemoveGuestAsync(guest);
+
+            foreach (var user in usersToRemove)
+                await _itemMembersService.RemoveUserAsync(user);
 
             return new() { Success = true };
         }
