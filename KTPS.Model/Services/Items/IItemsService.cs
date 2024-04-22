@@ -7,4 +7,5 @@ namespace KTPS.Model.Services.Items;
 public interface IItemsService
 {
     Task<ServerResult> CreateItemAsync(CreateItemRequest request);
+    Task<ServerResult> EditItemAsync(EditItemRequest request);
 }
