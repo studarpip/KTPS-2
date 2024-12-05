@@ -9,4 +9,12 @@ public class CalculationResponse
     public List<UserCalculation> UserCalculations { get; set; }
     public int TotalItems { get; set; }
     public decimal TotalAmount { get; set; }
+
+    public CalculationResponse(List<GuestCalculation> guests, List<UserCalculation> users, int totalItemsCount, decimal totalAmount)
+    {
+        GuestCalculations = guests;
+        UserCalculations = users;
+        TotalItems = totalItemsCount;
+        TotalAmount = totalAmount;
+    }
 }

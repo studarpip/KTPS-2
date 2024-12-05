@@ -1,0 +1,195 @@
+{
+  "$schema": "http://json.schemastore.org/sarif-1.0.0",
+  "version": "1.0.0",
+  "runs": [
+    {
+      "tool": {
+        "name": "Microsoft (R) Visual C# Compiler",
+        "version": "4.10.0.0",
+        "fileVersion": "4.10.0-3.24314.14 (259e82e9)",
+        "semanticVersion": "4.10.0",
+        "language": "en-US"
+      },
+      "results": [
+        {
+          "ruleId": "S1118",
+          "level": "warning",
+          "message": "Add a 'protected' constructor or the 'static' keyword to the class declaration.",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///C:/Users/PC/Desktop/KTPS-2/KTPS.Server.WebAPI/Program.cs",
+                "region": {
+                  "startLine": 25,
+                  "startColumn": 14,
+                  "endLine": 25,
+                  "endColumn": 21
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "S5122",
+          "level": "warning",
+          "message": "Make sure this permissive CORS policy is safe here.",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///C:/Users/PC/Desktop/KTPS-2/KTPS.Server.WebAPI/Program.cs",
+                "region": {
+                  "startLine": 42,
+                  "startColumn": 32,
+                  "endLine": 42,
+                  "endColumn": 56
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "S6931",
+          "level": "warning",
+          "message": "Change the paths of the actions of this controller to be relative and adapt the controller route accordingly.",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///C:/Users/PC/Desktop/KTPS-2/KTPS.Server.WebAPI/Controllers/ShoppingListController.cs",
+                "region": {
+                  "startLine": 14,
+                  "startColumn": 14,
+                  "endLine": 14,
+                  "endColumn": 36
+                }
+              }
+            }
+          ],
+          "relatedLocations": [
+            {
+              "physicalLocation": {
+                "uri": "file:///C:/Users/PC/Desktop/KTPS-2/KTPS.Server.WebAPI/Controllers/ShoppingListController.cs",
+                "region": {
+                  "startLine": 34,
+                  "startColumn": 3,
+                  "endLine": 34,
+                  "endColumn": 34
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "uri": "file:///C:/Users/PC/Desktop/KTPS-2/KTPS.Server.WebAPI/Controllers/ShoppingListController.cs",
+                "region": {
+                  "startLine": 37,
+                  "startColumn": 3,
+                  "endLine": 37,
+                  "endColumn": 35
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "uri": "file:///C:/Users/PC/Desktop/KTPS-2/KTPS.Server.WebAPI/Controllers/ShoppingListController.cs",
+                "region": {
+                  "startLine": 40,
+                  "startColumn": 3,
+                  "endLine": 40,
+                  "endColumn": 36
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "uri": "file:///C:/Users/PC/Desktop/KTPS-2/KTPS.Server.WebAPI/Controllers/ShoppingListController.cs",
+                "region": {
+                  "startLine": 28,
+                  "startColumn": 3,
+                  "endLine": 28,
+                  "endColumn": 27
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "uri": "file:///C:/Users/PC/Desktop/KTPS-2/KTPS.Server.WebAPI/Controllers/ShoppingListController.cs",
+                "region": {
+                  "startLine": 31,
+                  "startColumn": 6,
+                  "endLine": 31,
+                  "endColumn": 28
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1,
+            "customProperties": {
+              "0": null,
+              "1": null,
+              "2": null,
+              "3": null,
+              "4": null
+            }
+          }
+        }
+      ],
+      "rules": {
+        "S1118": {
+          "id": "S1118",
+          "shortDescription": "Utility classes should not have public constructors",
+          "fullDescription": "Whenever there are portions of code that are duplicated and do not depend on the state of their container class, they can be centralized inside a \"utility class\". A utility class is a class that only has static members, hence it should not be instantiated.",
+          "defaultLevel": "warning",
+          "helpUri": "https://rules.sonarsource.com/csharp/RSPEC-1118",
+          "properties": {
+            "category": "Major Code Smell",
+            "isEnabledByDefault": true,
+            "tags": [
+              "C#",
+              "MainSourceScope",
+              "TestSourceScope",
+              "SonarWay"
+            ]
+          }
+        },
+        "S5122": {
+          "id": "S5122",
+          "shortDescription": "Having a permissive Cross-Origin Resource Sharing policy is security-sensitive",
+          "fullDescription": "Having a permissive Cross-Origin Resource Sharing policy is security-sensitive. It has led in the past to the following vulnerabilities:",
+          "defaultLevel": "warning",
+          "helpUri": "https://rules.sonarsource.com/csharp/RSPEC-5122",
+          "properties": {
+            "category": "Minor Security Hotspot",
+            "isEnabledByDefault": true,
+            "tags": [
+              "C#",
+              "MainSourceScope",
+              "SonarWay"
+            ]
+          }
+        },
+        "S6931": {
+          "id": "S6931",
+          "shortDescription": "ASP.NET controller actions should not have a route template starting with \"/\"",
+          "fullDescription": "Route templates for ASP.NET controller actions, defined via a RouteAttribute or any derivation of HttpMethodAttribute, should not start with \"/\".",
+          "defaultLevel": "warning",
+          "helpUri": "https://rules.sonarsource.com/csharp/RSPEC-6931",
+          "properties": {
+            "category": "Major Code Smell",
+            "isEnabledByDefault": true,
+            "tags": [
+              "C#",
+              "MainSourceScope",
+              "SonarWay"
+            ]
+          }
+        }
+      }
+    }
+  ]
+}

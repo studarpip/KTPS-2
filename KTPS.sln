@@ -3,13 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.0.31903.59
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KTPS.Server.WebAPI", "KTPS.Server.WebAPI\KTPS.Server.WebAPI.csproj", "{50FECA68-7254-4AAC-9163-78D26514AF6E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "KTPS.Server.WebAPI", "KTPS.Server.WebAPI\KTPS.Server.WebAPI.csproj", "{50FECA68-7254-4AAC-9163-78D26514AF6E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KTPS.Model", "KTPS.Model\KTPS.Model.csproj", "{EE13F87D-43F5-418E-BBA9-792632E16D7F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "KTPS.Model", "KTPS.Model\KTPS.Model.csproj", "{EE13F87D-43F5-418E-BBA9-792632E16D7F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KTPS.Model.Tests", "KTPS.Model.Tests\KTPS.Model.Tests.csproj", "{D6376A20-D27B-4371-89C7-C418C60054DD}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KTPS.Server.WebAPI.E2E", "KTPS.Server.WebAPI.E2E\KTPS.Server.WebAPI.E2E.csproj", "{01493151-02D7-429B-A8CA-1EDA6BD40B88}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KTPS.Model.Test", "KTPS.Model.Test\KTPS.Model.Test.csproj", "{E5337C7F-B9EC-4D8A-BB42-EF68D06B4685}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -25,14 +23,10 @@ Global
 		{EE13F87D-43F5-418E-BBA9-792632E16D7F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{EE13F87D-43F5-418E-BBA9-792632E16D7F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{EE13F87D-43F5-418E-BBA9-792632E16D7F}.Release|Any CPU.Build.0 = Release|Any CPU
-		{D6376A20-D27B-4371-89C7-C418C60054DD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{D6376A20-D27B-4371-89C7-C418C60054DD}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{D6376A20-D27B-4371-89C7-C418C60054DD}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{D6376A20-D27B-4371-89C7-C418C60054DD}.Release|Any CPU.Build.0 = Release|Any CPU
-		{01493151-02D7-429B-A8CA-1EDA6BD40B88}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{01493151-02D7-429B-A8CA-1EDA6BD40B88}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{01493151-02D7-429B-A8CA-1EDA6BD40B88}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{01493151-02D7-429B-A8CA-1EDA6BD40B88}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E5337C7F-B9EC-4D8A-BB42-EF68D06B4685}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E5337C7F-B9EC-4D8A-BB42-EF68D06B4685}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E5337C7F-B9EC-4D8A-BB42-EF68D06B4685}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E5337C7F-B9EC-4D8A-BB42-EF68D06B4685}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

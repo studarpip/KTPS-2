@@ -1,16 +1,18 @@
 ﻿using KTPS.Model.Entities;
 using KTPS.Model.Entities.Calculation;
+using KTPS.Model.Entities.Items;
 using KTPS.Model.Entities.Responses;
 using KTPS.Model.Repositories.GroupMembers;
 using KTPS.Model.Repositories.Guests;
 using KTPS.Model.Services.Items;
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
 namespace KTPS.Model.Services.Calculation;
 
-public class CalculationService : ICalculationService
+public class CalculationService : ServiceBase, ICalculationService
 {
     private readonly IItemsService _itemsService;
     private readonly IItemMembersService _itemMembersService;
@@ -31,59 +33,48 @@ public class CalculationService : ICalculationService
     }
 
     public async Task<ServerResult<CalculationResponse>> CalculateGroupExpensesAsync(int groupId)
-    {
-        try
+        => await ProcessRequestAsync<CalculationResponse>(async () =>
         {
             var items = await _itemsService.GetGroupItemsAsync(groupId);
             if (items?.Any() != true)
-                return new() { Success = false, Message = "Group has no items!" };
+                throw new ServiceException("Group has no items");
 
             var guests = await _guestsRepository.GetByGroupID(groupId);
             var users = await _groupMembersRepository.GetByGroupIDAsync(groupId);
 
-            var guestCalculations = guests.Select(x => new GuestCalculation { GuestId = x.ID, Amount = 0m, Name = x.Name }).ToList();
-            var userCalculations = users.Select(x => new UserCalculation { UserId = x.ID, Amount = 0m, Username = x.Username }).ToList();
-
+            var guestCalculations = guests.Select(x => new GuestCalculation(x)).ToList();
+            var userCalculations = users.Select(x => new UserCalculation(x)).ToList();
+            
             foreach (var item in items)
             {
                 var itemMembers = await _itemMembersService.GetMembersAsync(item.Id);
                 if (itemMembers?.Any() != true)
                     continue;
 
-                foreach (var calculation in guestCalculations)
-                {
-                    if (!itemMembers.Any(x => x.GuestId == calculation.GuestId))
-                        continue;
-
-                    var itemAmountForGuest = item.Quantity * item.Price / itemMembers.Count();
-                    calculation.Amount += itemAmountForGuest;
-                }
-
-                foreach (var calculation in userCalculations)
-                {
-                    if (!itemMembers.Any(x => x.UserId == calculation.UserId))
-                        continue;
-
-                    var itemAmountForUser = item.Quantity * item.Price / itemMembers.Count();
-                    calculation.Amount += itemAmountForUser;
-                }
+                UpdateCalculations(itemMembers, guestCalculations, (x, calc) => x.GuestId == calc.GuestId, item);
+                UpdateCalculations(itemMembers, userCalculations, (x, calc) => x.UserId == calc.UserId, item);
             }
 
-            return new()
-            {
-                Success = true,
-                Data = new()
-                {
-                    GuestCalculations = guestCalculations,
-                    UserCalculations = userCalculations,
-                    TotalItems = items.Select(x => x.Quantity).Sum(),
-                    TotalAmount = items.Select(x => x.Price).Sum()
-                }
-            };
-        }
-        catch (Exception)
+            var result = new CalculationResponse(guestCalculations, userCalculations, items.Select(x => x.Quantity).Sum(), items.Select(x => x.Price).Sum());
+
+            return new(result);
+        });
+
+    private static decimal CaclulateTotal(IEnumerable<ItemMemberBasic> items, Func<ItemMemberBasic, bool> predicate, ItemBasic item)
+    {
+        if (items.Any(predicate))
+            return 0;
+
+        return item.CalculateTotal(items.Count());
+    }
+
+    private static void UpdateCalculations<T>(IEnumerable<ItemMemberBasic> itemMembers, IEnumerable<T> calculations, Func<ItemMemberBasic, T, bool> matchCondition, ItemBasic item)
+    where T : AmountCalculation
+    {
+        foreach (var calculation in calculations)
         {
-            return new() { Success = false, Message = "Technical error occurred while calculating expenses!" };
+            calculation.Amount += CaclulateTotal(itemMembers, member => matchCondition(member, calculation), item);
         }
     }
+
 }

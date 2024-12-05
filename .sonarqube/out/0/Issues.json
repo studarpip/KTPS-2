@@ -1,0 +1,588 @@
+{
+  "$schema": "http://json.schemastore.org/sarif-1.0.0",
+  "version": "1.0.0",
+  "runs": [
+    {
+      "tool": {
+        "name": "Microsoft (R) Visual C# Compiler",
+        "version": "4.10.0.0",
+        "fileVersion": "4.10.0-3.24314.14 (259e82e9)",
+        "semanticVersion": "4.10.0",
+        "language": "en-US"
+      },
+      "results": [
+        {
+          "ruleId": "S1192",
+          "level": "warning",
+          "message": "Define a constant instead of using this literal 'Technical error!' 10 times.",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///C:/Users/PC/Desktop/KTPS-2/KTPS.Model/Services/Groups/GroupsService.cs",
+                "region": {
+                  "startLine": 48,
+                  "startColumn": 55,
+                  "endLine": 48,
+                  "endColumn": 73
+                }
+              }
+            }
+          ],
+          "relatedLocations": [
+            {
+              "physicalLocation": {
+                "uri": "file:///C:/Users/PC/Desktop/KTPS-2/KTPS.Model/Services/Groups/GroupsService.cs",
+                "region": {
+                  "startLine": 70,
+                  "startColumn": 55,
+                  "endLine": 70,
+                  "endColumn": 73
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "uri": "file:///C:/Users/PC/Desktop/KTPS-2/KTPS.Model/Services/Groups/GroupsService.cs",
+                "region": {
+                  "startLine": 93,
+                  "startColumn": 55,
+                  "endLine": 93,
+                  "endColumn": 73
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "uri": "file:///C:/Users/PC/Desktop/KTPS-2/KTPS.Model/Services/Groups/GroupsService.cs",
+                "region": {
+                  "startLine": 106,
+                  "startColumn": 55,
+                  "endLine": 106,
+                  "endColumn": 73
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "uri": "file:///C:/Users/PC/Desktop/KTPS-2/KTPS.Model/Services/Groups/GroupsService.cs",
+                "region": {
+                  "startLine": 131,
+                  "startColumn": 55,
+                  "endLine": 131,
+                  "endColumn": 73
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "uri": "file:///C:/Users/PC/Desktop/KTPS-2/KTPS.Model/Services/Groups/GroupsService.cs",
+                "region": {
+                  "startLine": 151,
+                  "startColumn": 55,
+                  "endLine": 151,
+                  "endColumn": 73
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "uri": "file:///C:/Users/PC/Desktop/KTPS-2/KTPS.Model/Services/Groups/GroupsService.cs",
+                "region": {
+                  "startLine": 168,
+                  "startColumn": 55,
+                  "endLine": 168,
+                  "endColumn": 73
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "uri": "file:///C:/Users/PC/Desktop/KTPS-2/KTPS.Model/Services/Groups/GroupsService.cs",
+                "region": {
+                  "startLine": 181,
+                  "startColumn": 55,
+                  "endLine": 181,
+                  "endColumn": 73
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "uri": "file:///C:/Users/PC/Desktop/KTPS-2/KTPS.Model/Services/Groups/GroupsService.cs",
+                "region": {
+                  "startLine": 194,
+                  "startColumn": 55,
+                  "endLine": 194,
+                  "endColumn": 73
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "uri": "file:///C:/Users/PC/Desktop/KTPS-2/KTPS.Model/Services/Groups/GroupsService.cs",
+                "region": {
+                  "startLine": 207,
+                  "startColumn": 55,
+                  "endLine": 207,
+                  "endColumn": 73
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1,
+            "customProperties": {
+              "0": null,
+              "1": null,
+              "2": null,
+              "3": null,
+              "4": null,
+              "5": null,
+              "6": null,
+              "7": null,
+              "8": null
+            }
+          }
+        },
+        {
+          "ruleId": "S1192",
+          "level": "warning",
+          "message": "Define a constant instead of using this literal 'Group does not exist!' 5 times.",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///C:/Users/PC/Desktop/KTPS-2/KTPS.Model/Services/Groups/GroupsService.cs",
+                "region": {
+                  "startLine": 58,
+                  "startColumn": 59,
+                  "endLine": 58,
+                  "endColumn": 82
+                }
+              }
+            }
+          ],
+          "relatedLocations": [
+            {
+              "physicalLocation": {
+                "uri": "file:///C:/Users/PC/Desktop/KTPS-2/KTPS.Model/Services/Groups/GroupsService.cs",
+                "region": {
+                  "startLine": 80,
+                  "startColumn": 59,
+                  "endLine": 80,
+                  "endColumn": 82
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "uri": "file:///C:/Users/PC/Desktop/KTPS-2/KTPS.Model/Services/Groups/GroupsService.cs",
+                "region": {
+                  "startLine": 116,
+                  "startColumn": 59,
+                  "endLine": 116,
+                  "endColumn": 82
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "uri": "file:///C:/Users/PC/Desktop/KTPS-2/KTPS.Model/Services/Groups/GroupsService.cs",
+                "region": {
+                  "startLine": 141,
+                  "startColumn": 59,
+                  "endLine": 141,
+                  "endColumn": 82
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "uri": "file:///C:/Users/PC/Desktop/KTPS-2/KTPS.Model/Services/Groups/GroupsService.cs",
+                "region": {
+                  "startLine": 161,
+                  "startColumn": 59,
+                  "endLine": 161,
+                  "endColumn": 82
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1,
+            "customProperties": {
+              "0": null,
+              "1": null,
+              "2": null,
+              "3": null
+            }
+          }
+        },
+        {
+          "ruleId": "S1192",
+          "level": "warning",
+          "message": "Define a constant instead of using this literal 'Technical error!' 5 times.",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///C:/Users/PC/Desktop/KTPS-2/KTPS.Model/Services/Login/LoginService.cs",
+                "region": {
+                  "startLine": 35,
+                  "startColumn": 59,
+                  "endLine": 35,
+                  "endColumn": 77
+                }
+              }
+            }
+          ],
+          "relatedLocations": [
+            {
+              "physicalLocation": {
+                "uri": "file:///C:/Users/PC/Desktop/KTPS-2/KTPS.Model/Services/Login/LoginService.cs",
+                "region": {
+                  "startLine": 45,
+                  "startColumn": 55,
+                  "endLine": 45,
+                  "endColumn": 73
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "uri": "file:///C:/Users/PC/Desktop/KTPS-2/KTPS.Model/Services/Login/LoginService.cs",
+                "region": {
+                  "startLine": 61,
+                  "startColumn": 55,
+                  "endLine": 61,
+                  "endColumn": 73
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "uri": "file:///C:/Users/PC/Desktop/KTPS-2/KTPS.Model/Services/Login/LoginService.cs",
+                "region": {
+                  "startLine": 80,
+                  "startColumn": 55,
+                  "endLine": 80,
+                  "endColumn": 73
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "uri": "file:///C:/Users/PC/Desktop/KTPS-2/KTPS.Model/Services/Login/LoginService.cs",
+                "region": {
+                  "startLine": 100,
+                  "startColumn": 55,
+                  "endLine": 100,
+                  "endColumn": 73
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1,
+            "customProperties": {
+              "0": null,
+              "1": null,
+              "2": null,
+              "3": null
+            }
+          }
+        },
+        {
+          "ruleId": "S1192",
+          "level": "warning",
+          "message": "Define a constant instead of using this literal 'Technical error!' 4 times.",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///C:/Users/PC/Desktop/KTPS-2/KTPS.Model/Services/Items/ItemsService.cs",
+                "region": {
+                  "startLine": 56,
+                  "startColumn": 55,
+                  "endLine": 56,
+                  "endColumn": 73
+                }
+              }
+            }
+          ],
+          "relatedLocations": [
+            {
+              "physicalLocation": {
+                "uri": "file:///C:/Users/PC/Desktop/KTPS-2/KTPS.Model/Services/Items/ItemsService.cs",
+                "region": {
+                  "startLine": 100,
+                  "startColumn": 55,
+                  "endLine": 100,
+                  "endColumn": 73
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "uri": "file:///C:/Users/PC/Desktop/KTPS-2/KTPS.Model/Services/Items/ItemsService.cs",
+                "region": {
+                  "startLine": 119,
+                  "startColumn": 55,
+                  "endLine": 119,
+                  "endColumn": 73
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "uri": "file:///C:/Users/PC/Desktop/KTPS-2/KTPS.Model/Services/Items/ItemsService.cs",
+                "region": {
+                  "startLine": 139,
+                  "startColumn": 55,
+                  "endLine": 139,
+                  "endColumn": 73
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1,
+            "customProperties": {
+              "0": null,
+              "1": null,
+              "2": null
+            }
+          }
+        },
+        {
+          "ruleId": "S2245",
+          "level": "warning",
+          "message": "Make sure that using this pseudorandom number generator is safe here.",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///C:/Users/PC/Desktop/KTPS-2/KTPS.Model/Helpers/RandomString.cs",
+                "region": {
+                  "startLine": 12,
+                  "startColumn": 25,
+                  "endLine": 12,
+                  "endColumn": 37
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "S2234",
+          "level": "warning",
+          "message": "Parameters to 'InsertAsync' have the same names but not the same order as the method arguments.",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///C:/Users/PC/Desktop/KTPS-2/KTPS.Model/Services/Friends/FriendsService.cs",
+                "region": {
+                  "startLine": 68,
+                  "startColumn": 38,
+                  "endLine": 68,
+                  "endColumn": 49
+                }
+              }
+            }
+          ],
+          "relatedLocations": [
+            {
+              "physicalLocation": {
+                "uri": "file:///C:/Users/PC/Desktop/KTPS-2/KTPS.Model/Repositories/Friends/IFriendsRepository.cs",
+                "region": {
+                  "startLine": 12,
+                  "startColumn": 10,
+                  "endLine": 12,
+                  "endColumn": 21
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1,
+            "customProperties": {
+              "0": null
+            }
+          }
+        },
+        {
+          "ruleId": "S927",
+          "level": "warning",
+          "message": "Rename parameter 'groupId' to 'iD' to match the interface declaration.",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///C:/Users/PC/Desktop/KTPS-2/KTPS.Model/Repositories/GroupMembers/GroupMembersRepository.cs",
+                "region": {
+                  "startLine": 27,
+                  "startColumn": 62,
+                  "endLine": 27,
+                  "endColumn": 69
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "S927",
+          "level": "warning",
+          "message": "Rename parameter 'userID' to 'userId' to match the interface declaration.",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///C:/Users/PC/Desktop/KTPS-2/KTPS.Model/Services/Groups/GroupsService.cs",
+                "region": {
+                  "startLine": 97,
+                  "startColumn": 84,
+                  "endLine": 97,
+                  "endColumn": 90
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "S927",
+          "level": "warning",
+          "message": "Rename parameter 'groupID' to 'groupId' to match the interface declaration.",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///C:/Users/PC/Desktop/KTPS-2/KTPS.Model/Services/Groups/GroupsService.cs",
+                "region": {
+                  "startLine": 172,
+                  "startColumn": 61,
+                  "endLine": 172,
+                  "endColumn": 68
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "S927",
+          "level": "warning",
+          "message": "Rename parameter 'userID' to 'userId' to match the interface declaration.",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///C:/Users/PC/Desktop/KTPS-2/KTPS.Model/Services/Groups/GroupsService.cs",
+                "region": {
+                  "startLine": 172,
+                  "startColumn": 74,
+                  "endLine": 172,
+                  "endColumn": 80
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "S927",
+          "level": "warning",
+          "message": "Rename parameter 'groupID' to 'groupId' to match the interface declaration.",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///C:/Users/PC/Desktop/KTPS-2/KTPS.Model/Services/Groups/GroupsService.cs",
+                "region": {
+                  "startLine": 135,
+                  "startColumn": 85,
+                  "endLine": 135,
+                  "endColumn": 92
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        }
+      ],
+      "rules": {
+        "S1192": {
+          "id": "S1192",
+          "shortDescription": "String literals should not be duplicated",
+          "fullDescription": "Duplicated string literals make the process of refactoring complex and error-prone, as any change would need to be propagated on all occurrences.",
+          "defaultLevel": "warning",
+          "helpUri": "https://rules.sonarsource.com/csharp/RSPEC-1192",
+          "properties": {
+            "category": "Minor Code Smell",
+            "isEnabledByDefault": false,
+            "tags": [
+              "C#",
+              "MainSourceScope",
+              "SonarWay"
+            ]
+          }
+        },
+        "S2234": {
+          "id": "S2234",
+          "shortDescription": "Arguments should be passed in the same order as the method parameters",
+          "fullDescription": "Calling a method with argument variables whose names match the method parameter names but in a different order can cause confusion. It could indicate a mistake in the arguments' order, leading to unexpected results.",
+          "defaultLevel": "warning",
+          "helpUri": "https://rules.sonarsource.com/csharp/RSPEC-2234",
+          "properties": {
+            "category": "Major Code Smell",
+            "isEnabledByDefault": true,
+            "tags": [
+              "C#",
+              "MainSourceScope",
+              "TestSourceScope",
+              "SonarWay"
+            ]
+          }
+        },
+        "S2245": {
+          "id": "S2245",
+          "shortDescription": "Using pseudorandom number generators (PRNGs) is security-sensitive",
+          "fullDescription": "Using pseudorandom number generators (PRNGs) is security-sensitive. For example, it has led in the past to the following vulnerabilities:",
+          "defaultLevel": "warning",
+          "helpUri": "https://rules.sonarsource.com/csharp/RSPEC-2245",
+          "properties": {
+            "category": "Critical Security Hotspot",
+            "isEnabledByDefault": true,
+            "tags": [
+              "C#",
+              "MainSourceScope",
+              "SonarWay"
+            ]
+          }
+        },
+        "S927": {
+          "id": "S927",
+          "shortDescription": "Parameter names should match base declaration and other partial definitions",
+          "fullDescription": "Parameters are part of the method signature and its identity.",
+          "defaultLevel": "warning",
+          "helpUri": "https://rules.sonarsource.com/csharp/RSPEC-927",
+          "properties": {
+            "category": "Critical Code Smell",
+            "isEnabledByDefault": true,
+            "tags": [
+              "C#",
+              "MainSourceScope",
+              "TestSourceScope",
+              "SonarWay"
+            ]
+          }
+        }
+      }
+    }
+  ]
+}

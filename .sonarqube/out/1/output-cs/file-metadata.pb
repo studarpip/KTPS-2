@@ -1,0 +1,11 @@
+A
+8C:\Users\PC\Desktop\KTPS-2\KTPS.Server.WebAPI\Program.csutf-8l
+aC:\Users\PC\Desktop\KTPS-2\KTPS.Server.WebAPI\obj\Debug\net6.0\KTPS.Server.WebAPI.AssemblyInfo.csutf-8
+tC:\Users\PC\Desktop\KTPS-2\KTPS.Server.WebAPI\obj\Debug\net6.0\KTPS.Server.WebAPI.MvcApplicationPartsAssemblyInfo.csutf-8x
+mC:\Users\PC\Desktop\KTPS-2\KTPS.Server.WebAPI\obj\Debug\net6.0\.NETCoreApp,Version=v6.0.AssemblyAttributes.csutf-8\
+SC:\Users\PC\Desktop\KTPS-2\KTPS.Server.WebAPI\Controllers\ShoppingListController.csutf-8\
+SC:\Users\PC\Desktop\KTPS-2\KTPS.Server.WebAPI\Controllers\RegistrationController.csutf-8\
+SC:\Users\PC\Desktop\KTPS-2\KTPS.Server.WebAPI\Controllers\NotificationController.csutf-8U
+LC:\Users\PC\Desktop\KTPS-2\KTPS.Server.WebAPI\Controllers\LoginController.csutf-8V
+MC:\Users\PC\Desktop\KTPS-2\KTPS.Server.WebAPI\Controllers\GroupsController.csutf-8W
+NC:\Users\PC\Desktop\KTPS-2\KTPS.Server.WebAPI\Controllers\FriendsController.csutf-8

@@ -1,0 +1,13 @@
+﻿C:\Users\PC\Desktop\KTPS-2\KTPS.Server.WebAPI\Controllers\FriendsController.cs
+C:\Users\PC\Desktop\KTPS-2\KTPS.Server.WebAPI\Controllers\GroupsController.cs
+C:\Users\PC\Desktop\KTPS-2\KTPS.Server.WebAPI\Controllers\LoginController.cs
+C:\Users\PC\Desktop\KTPS-2\KTPS.Server.WebAPI\Controllers\NotificationController.cs
+C:\Users\PC\Desktop\KTPS-2\KTPS.Server.WebAPI\Controllers\RegistrationController.cs
+C:\Users\PC\Desktop\KTPS-2\KTPS.Server.WebAPI\Controllers\ShoppingListController.cs
+C:\Users\PC\Desktop\KTPS-2\KTPS.Server.WebAPI\Program.cs
+C:\Users\PC\Desktop\KTPS-2\KTPS.Server.WebAPI\obj\Debug\net6.0\.NETCoreApp,Version=v6.0.AssemblyAttributes.cs
+C:\Users\PC\Desktop\KTPS-2\KTPS.Server.WebAPI\obj\Debug\net6.0\KTPS.Server.WebAPI.AssemblyInfo.cs
+C:\Users\PC\Desktop\KTPS-2\KTPS.Server.WebAPI\obj\Debug\net6.0\KTPS.Server.WebAPI.MvcApplicationPartsAssemblyInfo.cs
+C:\Users\PC\Desktop\KTPS-2\KTPS.Server.WebAPI\appsettings.Development.json
+C:\Users\PC\Desktop\KTPS-2\KTPS.Server.WebAPI\appsettings.json
+C:\Users\PC\Desktop\KTPS-2\KTPS.Server.WebAPI\Properties\launchSettings.json

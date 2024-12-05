@@ -1,0 +1,1 @@
+Roslyn version: 4.10.0.0Language version: CSharp12!Concurrent execution: enabledxtFile 'C:\Users\PC\Desktop\KTPS-2\KTPS.Model\obj\Debug\net6.0\KTPS.Model.AssemblyInfo.cs' was recognized as generatedçàFile 'C:\Users\PC\Desktop\KTPS-2\KTPS.Model\obj\Debug\net6.0\.NETCoreApp,Version=v6.0.AssemblyAttributes.cs' was recognized as generated

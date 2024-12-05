@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace KTPS.Server.WebAPI.Controllers;
 
-[Controller, Route("/shopping_list")]
+[Controller, Route("/shopping")]
 public class ShoppingListController
 {
 	private readonly IItemsService _itemsService;
@@ -25,16 +25,16 @@ public class ShoppingListController
 		_calculationService = calculationService;
 	}
 
-	[HttpPost("/create_item")]
+	[HttpPost("/createItem")]
 	public async Task<ServerResult> CreateItemAsync(CreateItemRequest request) => await _itemsService.CreateItemAsync(request);
 
-    [HttpPost("/edit_item")]
+    [HttpPut("/editItem")]
     public async Task<ServerResult> EditItemAsync(EditItemRequest request) => await _itemsService.EditItemAsync(request);
 
-	[HttpGet("/{groupId}/get_items")]
+	[HttpGet("/{groupId}/items")]
 	public async Task<ServerResult<IEnumerable<ItemBasic>>> GetItemsAsync(int groupId) => await _itemsService.GetGroupItemListAsync(groupId);
 
-	[HttpGet("/{itemId}/delete_item")]
+	[HttpDelete("/{itemId}")]
 	public async Task<ServerResult> DeleteItemAsync(int itemId) => await _itemsService.DeleteItemAsync(itemId);
 
 	[HttpGet("/{groupId}/calculation")]

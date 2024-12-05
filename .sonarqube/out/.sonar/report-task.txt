@@ -1,0 +1,6 @@
+projectKey=ktps-2
+serverUrl=http://localhost:9000
+serverVersion=10.7.0.96327
+dashboardUrl=http://localhost:9000/dashboard?id=ktps-2
+ceTaskId=12f4e716-4e1b-4e0c-a486-31a7cc37d7f0
+ceTaskUrl=http://localhost:9000/api/ce/task?id=12f4e716-4e1b-4e0c-a486-31a7cc37d7f0
